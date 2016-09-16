@@ -1,8 +1,7 @@
 /* script.js */
 
-// TODO Start button
-
-
+// GLOBAL VARIABLES
+var currentCard = 0;
 
 // EVENT LISTENERS
 $(startButton).on('click', startGame);
@@ -14,28 +13,31 @@ $(responseButton).on('click', submitResponse);
 // GAME FUNCTIONS
 // Start
 function startGame() {
-	displayCard();
+	currentCard = 0; // reset card counter
+	displayCard(currentCard);
 }
 
 // Display Card
-function displayCard() {
+function displayCard(currentCard) {
 	// TODO show first card
-	$('#flashcard .prompt').html(cards[0].q);
+	nextCard(currentCard);
 }
 
 // Submit Response, check for correctness
 function submitResponse() {
-	if ($(responseField).val() === 'Nick') {
+	if ($(responseField).val() === cards[currentCard].a) {
 		console.log("Correct!");
 	}
+	currentCard++; // move to next card
+	nextCard(currentCard);
 	// if correct, take out of list
 	// if wrong, keep in list
 	// go to next card
 	// TODO randomize wrong cards order
 }
 
-function nextCard() {
-
+function nextCard(currentCard) {
+	$('#flashcard .prompt').html(cards[currentCard].q);
 }
 
 
