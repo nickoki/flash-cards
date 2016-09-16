@@ -2,7 +2,37 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
 
 body {
+	display: flex;
+	justify-content: space-between;
+
 	font-family: "Roboto", sans-serif;
+	font-size: 12pt;
+}
+
+nav {
+	display: block;
+	width: 20vw;
+	max-width: 280px;
+	background: #eee;
+}
+
+nav ul {
+	margin: 1em;
+	padding: 0;
+	list-style: none;
+}
+
+nav li {
+	padding: 20px 0;
+	background: #8cc152;
+	color: #fff;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.3em;
+}
+
+nav li:hover {
+	background: #A0D468;
 }
 
 .container {
@@ -10,7 +40,7 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 100%;
+	width: 800px;
 	background: #ddd;
 }
 
@@ -19,14 +49,27 @@ body {
 }
 
 .card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: 2em;
-	border-radius: 20px;
+	border-radius: 1em;
 	width: 500px;
 	height: 300px;
-	background: #fff
+	background: #fff;
+	text-align: center;
+}
+
+.prompt {
+	padding: 0 2em 0.6em 2em;
+	font-size: 2em;
+	font-weight: 300;
 }
 
 .response {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	margin: 2em;
 	width: 800px;
 	height: 100px;
@@ -41,6 +84,10 @@ body {
 
 // Smartphones
 @media screen and (max-width: 320px) {
+
+	body {
+		font-size: 11pt;
+	}
 
 	.card {
 		width: 300;

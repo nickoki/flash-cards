@@ -1,21 +1,25 @@
 /* script.js */
 
-// TODO Set up html & css, flexbox
+// TODO Start button
+function startGame() {
+	displayCard();
+}
 
-// TODO Create card object
+function displayCard() {
+	// TODO show first card
+	$('#flashcard .prompt').html(cards[0].q);
+}
 
-// TODO make card constructor
-
-// TODO set up hard-coded card content
+// EVENT LISTENERS
+$(startButton).on('click', startGame);
 
 // TODO Write card flip function
 
 // TODO Write next card function
 
+// TODO If wrong, keep card in rotation, randomize. If correct, remove from queue
+
 // TODO Scoreboard function
-
-
-
 
 
 

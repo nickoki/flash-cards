@@ -4,14 +4,22 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Flash Cards</title>
+		<link href="css/normalize.css" rel="stylesheet" type="text/css">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 	</head>
 
 	<body>
+		<nav class="sidebar">
+			<ul>
+				<li id="startButton" class="nav-button">Start</li>
+			</ul>
+		</nav>
 
 		<div class="container">
 			<div class="card-container">
-				<div class="card"></div>
+				<div id="flashcard" class="card">
+					<h2 class="prompt">Example prompt goes in this space.</Example></h2>
+				</div>
 			</div>
 			<div class="response">
 				<input placeholder="Your response" />
@@ -19,7 +27,10 @@
 			</div>
 		</div>
 
+		<aside></aside>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+		<script src="js/cards.js"></script>
 		<script src="js/script.js"></script>
 	</body>
 
