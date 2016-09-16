@@ -1,17 +1,45 @@
 /* script.js */
 
 // TODO Start button
+
+
+
+// EVENT LISTENERS
+$(startButton).on('click', startGame);
+
+$(responseButton).on('click', submitResponse);
+
+
+
+// GAME FUNCTIONS
+// Start
 function startGame() {
 	displayCard();
 }
 
+// Display Card
 function displayCard() {
 	// TODO show first card
 	$('#flashcard .prompt').html(cards[0].q);
 }
 
-// EVENT LISTENERS
-$(startButton).on('click', startGame);
+// Submit Response, check for correctness
+function submitResponse() {
+	if ($(responseField).val() === 'Nick') {
+		console.log("Correct!");
+	}
+	// if correct, take out of list
+	// if wrong, keep in list
+	// go to next card
+	// TODO randomize wrong cards order
+}
+
+function nextCard() {
+
+}
+
+
+
 
 // TODO Write card flip function
 
