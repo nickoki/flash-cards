@@ -30,9 +30,6 @@ After making further changes, deploy via push:
 git push origin gh-pages
 ```
 
-
----
-
 # Flash-Cards
 
 Pre-load your app with some data, and let the user flip through
