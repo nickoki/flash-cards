@@ -4,7 +4,9 @@
 body {
 	display: flex;
 	justify-content: space-between;
-
+	background: #485563;
+	/*background: -webkit-linear-gradient(to left, #485563 , #29323c);
+	background: linear-gradient(to left, #485563 , #29323c); */
 	font-family: "Roboto", sans-serif;
 	font-size: 12pt;
 }
@@ -13,16 +15,19 @@ nav {
 	display: block;
 	width: 20vw;
 	max-width: 280px;
+	height: 100vh;
 	background: #eee;
 }
 
-nav ul {
+nav ul,
+aside ul {
 	margin: 1em;
 	padding: 0;
 	list-style: none;
 }
 
-nav li {
+nav li,
+aside li {
 	padding: 20px 0;
 	background: #8cc152;
 	color: #fff;
@@ -31,8 +36,17 @@ nav li {
 	letter-spacing: 0.3em;
 }
 
-nav li:hover {
+nav li:hover,
+aside li:hover {
 	background: #A0D468;
+}
+
+aside {
+	display: block;
+	width: 20vw;
+	max-width: 280px;
+	height: 100vh;
+	background: #eee;
 }
 
 .container {
@@ -41,12 +55,9 @@ nav li:hover {
 	justify-content: center;
 	align-items: center;
 	width: 800px;
-	background: #ddd;
 }
 
-.card-container {
-
-}
+.card-container {}
 
 #flashcard {
 	visibility: hidden;
@@ -66,22 +77,36 @@ nav li:hover {
 
 .response-container {
 	visibility: hidden;
-}
-
-.prompt {
-	padding: 0 2em 0.6em 2em;
-	font-size: 2em;
-	font-weight: 300;
-}
-
-.response {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	margin: 2em;
 	width: 800px;
 	height: 100px;
-	background: #ccc;
+}
+
+.prompt {
+	padding: 0 2em 0.6em;
+	font-size: 2em;
+	font-weight: 300;
+}
+
+span {
+	padding: 10px 10px 10px 5px;
+	border: none;
+	width: 80%;
+	background: rgba(256, 256, 256, 0.5);
+	font-size: 3em;
+	color: #fff;
+	text-align: center;
+}
+
+span:focus {
+	outline: none;
+}
+
+#responseButton {
+	display: block;
 }
 
 /*

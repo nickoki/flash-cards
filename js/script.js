@@ -8,10 +8,21 @@ $(startButton).on('click', startGame);
 
 $(responseButton).on('click', submitResponse);
 
+$(responseField).keypress(function(e) {
+	if (e.which == 13) {
+		e.preventDefault();
+		submitResponse();
+		clearInput();
+		// TODO clear input field
+		// TODO disable return character
+	}
+});
 
 
 // GAME FUNCTIONS
 // Start
+startGame();
+
 function startGame() {
 	currentCard = 0; // reset card counter
 	displayBoard();
@@ -40,6 +51,10 @@ function submitResponse() {
 function nextCard() {
 	console.log(cards[currentCard].a);
 	$('#flashcard .prompt').html(cards[currentCard].q);
+}
+
+function clearInput() {
+	$(responseField).html('');
 }
 
 
