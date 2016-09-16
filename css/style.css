@@ -1,0 +1,51 @@
+/* style.css */
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
+
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: #ddd;
+}
+
+.card-container {
+
+}
+
+.card {
+	margin: 2em;
+	border-radius: 20px;
+	width: 500px;
+	height: 300px;
+	background: #fff
+}
+
+.response {
+	margin: 2em;
+	width: 800px;
+	height: 100px;
+	background: #ccc;
+}
+
+/*
+// Tablets
+@media screen and (max-width: 768px) {
+
+}
+
+// Smartphones
+@media screen and (max-width: 320px) {
+
+	.card {
+		width: 300;
+		height: 180px;
+	}
+
+}
+*/

@@ -1,6 +1,6 @@
 /* script.js */
 
-// TODO Set up html & css
+// TODO Set up html & css, flexbox
 
 // TODO Create card object
 
@@ -28,3 +28,5 @@ Deploy online
 // TODO
 // TODO Write your own cards
 // TODO Card animations
+
+// TODO add 5 user stories
