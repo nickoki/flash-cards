@@ -68,7 +68,7 @@ aside {
 	justify-content: center;
 	align-items: center;
 	margin: 2em;
-	border-radius: 1em;
+	border-radius: 8px;
 	width: 500px;
 	height: 300px;
 	background: #fff;
@@ -94,7 +94,8 @@ aside {
 span {
 	padding: 10px 10px 10px 5px;
 	border: none;
-	width: 80%;
+	border-radius: 8px;
+	width: 500px;
 	background: rgba(256, 256, 256, 0.5);
 	font-size: 3em;
 	color: #fff;

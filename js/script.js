@@ -26,6 +26,7 @@ startGame();
 function startGame() {
 	currentCard = 0; // reset card counter
 	displayBoard();
+	$(responseField).focus();
 	nextCard();
 }
 
@@ -37,7 +38,8 @@ function displayBoard() {
 
 // Submit Response, check for correctness
 function submitResponse() {
-	if ($(responseField).val() == cards[currentCard].a) {
+	console.log($(responseField).html() + '... expected: ' + cards[currentCard].a);
+	if ($(responseField).html() == cards[currentCard].a) {
 		console.log("Correct!");
 	}
 	currentCard++; // move to next card
@@ -49,7 +51,6 @@ function submitResponse() {
 }
 
 function nextCard() {
-	console.log(cards[currentCard].a);
 	$('#flashcard .prompt').html(cards[currentCard].q);
 }
 
