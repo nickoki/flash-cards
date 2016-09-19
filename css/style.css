@@ -38,7 +38,8 @@ aside ul {
 }
 
 .nav-button:hover {
-	background: #A0D468;
+	background: #3bafda;
+	cursor: pointer;
 }
 
 .container {
@@ -80,7 +81,7 @@ aside ul {
 }
 
 .prompt {
-	padding: 0 2em 0.6em;
+	padding: 0 2em;
 	font-size: 2em;
 	font-weight: 300;
 }
@@ -136,15 +137,20 @@ span:focus {
 #scoreboardList li {
 	display: flex;
 	justify-content: flex-start;
-	margin-bottom: 0.4em;
+	margin: 0.2em 0;
+	padding: 0.2em;
 	font-size: 0.9em;
 	font-weight: 300;
 	font-style: italic;
 	color: #bec1c4;
 }
 
-.preview-status {
+#scoreboardList li:hover {
+	background: #94989d;
+	cursor: pointer;
+}
 
+.preview-status {
 	width: 24px;
 }
 

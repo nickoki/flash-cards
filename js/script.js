@@ -65,7 +65,11 @@ function nextCard() {
 	if (currentCard >= cards.length) {
 		console.log("End of cards");
 	} else {
+		// Update flashcard
 		$('#flashcard .prompt').html(cards[currentCard].q);
+		// Update scorboard preview
+		$('.preview-value').eq(currentCard).html(cards[currentCard].q);
+		// TODO add show all button
 	}
 }
 
@@ -74,7 +78,8 @@ function nextCard() {
 // Initialize scoreboard
 function initScoreboard() {
 	for (var i = 0; i < cards.length; i++) {
-		var scoreboardCard = '<li><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">'+ cards[i].q + '</span></li>';
+		//var scoreboardCard = '<li><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">'+ cards[i].q + '</span></li>';
+		var scoreboardCard = '<li><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">. . .</span></li>';
 		$(scoreboardList).append(scoreboardCard);
 	}
 }
@@ -86,11 +91,14 @@ function updateScore(isCorrect) {
 		console.log("Correct!");
 		numCorrect++;
 		$('.preview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
+		$('.preview-status').eq(currentCard).parent().css('color', '#a0d468');
+		//$('.preview-value').eq(currentCard).css('text-decoration', 'line-through');
 		// TODO add skip button
 	} else {
 		console.log("Incorrect");
 		numIncorrect++;
 		$('.preview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
+		$('.preview-status').eq(currentCard).css('color', '#ed5565');
 	}
 	printScore();
 	// Update scoreboardList
