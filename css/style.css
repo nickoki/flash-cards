@@ -5,18 +5,20 @@ body {
 	display: flex;
 	justify-content: space-between;
 	background: #485563;
-	/*background: -webkit-linear-gradient(to left, #485563 , #29323c);
-	background: linear-gradient(to left, #485563 , #29323c); */
+	background: -webkit-linear-gradient(to left, #485563 , #29323c);
+	background: linear-gradient(to left, #485563 , #29323c);
 	font-family: "Roboto", sans-serif;
 	font-size: 12pt;
+	color: #fff;
 }
 
-nav {
+nav,
+aside {
 	display: block;
 	width: 20vw;
 	max-width: 280px;
 	height: 100vh;
-	background: #eee;
+	background: rgba(255, 255, 255, 0.1);
 }
 
 nav ul,
@@ -26,27 +28,17 @@ aside ul {
 	list-style: none;
 }
 
-nav li,
-aside li {
+.nav-button {
 	padding: 20px 0;
-	background: #8cc152;
+	background: #4fc1e9;
 	color: #fff;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 0.3em;
 }
 
-nav li:hover,
-aside li:hover {
+.nav-button:hover {
 	background: #A0D468;
-}
-
-aside {
-	display: block;
-	width: 20vw;
-	max-width: 280px;
-	height: 100vh;
-	background: #eee;
 }
 
 .container {
@@ -68,10 +60,12 @@ aside {
 	justify-content: center;
 	align-items: center;
 	margin: 2em;
+	border: 3px solid #fff;
 	border-radius: 8px;
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(0, 0, 0, 0.5);
 	width: 500px;
 	height: 300px;
-	background: #fff;
+	background: hidden;
 	text-align: center;
 }
 
@@ -91,12 +85,12 @@ aside {
 	font-weight: 300;
 }
 
-span {
+#responseField {
 	padding: 10px 10px 10px 5px;
 	border: none;
 	border-radius: 8px;
-	width: 500px;
-	background: rgba(256, 256, 256, 0.5);
+	width: 480px;
+	background: rgba(255, 255, 255, 0.1);
 	font-size: 3em;
 	color: #fff;
 	text-align: center;
@@ -108,6 +102,47 @@ span:focus {
 
 #responseButton {
 	display: block;
+}
+
+#scoreboard {
+	margin: 1em;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	padding: 0.6em 0;
+	list-style: none;
+
+}
+
+#scoreboard li {
+	margin: 0.2em 0;
+	font-size: 0.9em;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+#scoreboard span {
+	margin-right: 0.4em;
+}
+
+#scoreboardCorrect {
+	color: #a0d468;
+}
+
+#scoreboardIncorrect {
+	color: #ed5565;
+}
+
+#scoreboardList li {
+	margin-bottom: 0.4em;
+	font-size: 0.9em;
+	font-weight: 300;
+	font-style: italic;
+	color: #bec1c4;
+}
+
+.scoreStatus {
+	padding-right: 0.4em;
 }
 
 /*

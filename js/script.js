@@ -2,6 +2,10 @@
 
 // GLOBAL VARIABLES
 var currentCard = 0; // counter for cards list
+var numCorrect = 0;
+var numIncorrect = 0;
+
+
 
 // EVENT LISTENERS
 $(startButton).on('click', startGame);
@@ -19,6 +23,7 @@ $(responseField).keypress(function(e) {
 });
 
 
+
 // GAME FUNCTIONS
 // Start
 startGame();
@@ -26,6 +31,8 @@ startGame();
 function startGame() {
 	currentCard = 0; // reset card counter
 	displayBoard();
+	initScoreboard();
+	clearInput();
 	$(responseField).focus();
 	nextCard();
 }
@@ -40,7 +47,9 @@ function displayBoard() {
 function submitResponse() {
 	console.log($(responseField).html() + '... expected: ' + cards[currentCard].a);
 	if ($(responseField).html() == cards[currentCard].a) {
-		console.log("Correct!");
+		updateScore(true);
+	} else {
+		updateScore(false);
 	}
 	currentCard++; // move to next card
 	nextCard();
@@ -50,10 +59,57 @@ function submitResponse() {
 	// TODO randomize wrong cards order
 }
 
+// Move to next card in stack
 function nextCard() {
-	$('#flashcard .prompt').html(cards[currentCard].q);
+	// check for last card
+	if (currentCard >= cards.length) {
+		console.log("End of cards");
+	} else {
+		$('#flashcard .prompt').html(cards[currentCard].q);
+	}
 }
 
+// SCOREBOARD
+
+// Initialize scoreboard
+function initScoreboard() {
+	for (var i = 0; i < cards.length; i++) {
+		var scoreboardCard = '<li><span class="scoreStatus"><i class="fa fa-square-o" aria-hidden="true"></i></span>'+ cards[i].q + '</li>';
+		$(scoreboardList).append(scoreboardCard);
+	}
+}
+
+function updateScore(isCorrect) {
+	// TODO tally score
+	// if correct
+	if (isCorrect) {
+		console.log("Correct!");
+		numCorrect++;
+		console.log(currentCard);
+		console.log($('.scoreStatus'));
+		console.log($('.scoreStatus').eq(currentCard));
+		$('.scoreStatus').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
+		// TODO add skip button
+	} else {
+		console.log("Incorrect");
+		numIncorrect++;
+		console.log(currentCard);
+		console.log($('.scoreStatus'));
+		console.log($('.scoreStatus').eq(currentCard));
+		$('.scoreStatus').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
+	}
+	printScore();
+	// Update scoreboardList
+}
+
+function printScore() {
+	$(scoreboardCorrect).html(numCorrect);
+	$(scoreboardIncorrect).html(numIncorrect);
+}
+
+
+// HELPER FUNCTIONS
+// Clear response input field
 function clearInput() {
 	$(responseField).html('');
 }
@@ -61,13 +117,13 @@ function clearInput() {
 
 
 
-// TODO Write card flip function
-
-// TODO Write next card function
+// TODO Write card flip animation function
 
 // TODO If wrong, keep card in rotation, randomize. If correct, remove from queue
 
 // TODO Scoreboard function
+
+// TODO fix holy grail layout
 
 
 
@@ -82,3 +138,5 @@ Deploy online
 // TODO Card animations
 
 // TODO add 5 user stories
+
+// TODO Card list on side bar
