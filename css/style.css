@@ -134,7 +134,7 @@ span:focus {
 	color: #ed5565;
 }
 
-#scoreboardList li {
+#overview li {
 	display: flex;
 	justify-content: flex-start;
 	margin: 0.2em 0;
@@ -145,11 +145,11 @@ span:focus {
 	color: #bec1c4;
 }
 
-#scoreboardList li.active {
+#overview li.active {
 	background: #3e464f;
 }
 
-#scoreboardList li:hover {
+#overview li:hover {
 	background: #94989d;
 	cursor: pointer;
 }

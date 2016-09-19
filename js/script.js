@@ -2,8 +2,6 @@
 
 // GLOBAL VARIABLES
 var currentCard = 0; // counter for cards list
-var numCorrect = 0;
-var numIncorrect = 0;
 
 
 
@@ -15,6 +13,7 @@ function startGame() {
 	currentCard = -1; // reset card counter
 	displayBoard();
 	initScoreboard();
+	printScore();
 	clearInput();
 	$(responseField).focus();
 	nextCard();
@@ -43,7 +42,7 @@ function submitResponse() {
 
 // Move to next card in stack
 function nextCard() {
-	$('#scoreboardList li').eq(currentCard).removeClass('active');
+	$('#overview li').eq(currentCard).removeClass('active');
 	currentCard++; // Move to next card
 	// check for last card
 	if (currentCard >= cards.length) {
@@ -51,9 +50,9 @@ function nextCard() {
 	} else {
 		// Update flashcard
 		$('#flashcard .prompt').html(cards[currentCard].q);
-		// Update scorboard preview
-		$('#scoreboardList li').eq(currentCard).addClass('active');
-		$('.preview-value').eq(currentCard).html(cards[currentCard].q);
+		// Update scorboard overview
+		$('#overview li').eq(currentCard).addClass('active');
+		$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 		// TODO add show all button
 	}
 }
@@ -62,7 +61,7 @@ function nextCard() {
 function showCard(i) {
 	currentCard = i;
 	$('#flashcard .prompt').html(cards[i].q);
-	$('.preview-value').eq(currentCard).html(cards[currentCard].q);
+	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 
 }
 
@@ -73,9 +72,9 @@ function showCard(i) {
 // Initialize scoreboard
 function initScoreboard() {
 	for (var i = 0; i < cards.length; i++) {
-		//var scoreboardCard = '<li><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">'+ cards[i].q + '</span></li>';
-		var scoreboardCard = '<li data-index="' + i + '"><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">. . .</span></li>';
-		$(scoreboardList).append(scoreboardCard);
+		//var scoreboardCard = '<li><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">'+ cards[i].q + '</span></li>';
+		var scoreboardCard = '<li data-index="' + i + '"><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">. . .</span></li>';
+		$(overview).append(scoreboardCard);
 	}
 }
 
@@ -83,26 +82,48 @@ function updateScore(isCorrect) {
 	// TODO tally score
 	// if correct
 	if (isCorrect) {
-		console.log("Correct!");
-		numCorrect++;
-		$('.preview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
-		$('.preview-status').eq(currentCard).parent().css('color', '#a0d468');
-		//$('.preview-value').eq(currentCard).css('text-decoration', 'line-through');
+		setCorrect();
 		// TODO add skip button
 	} else {
-		console.log("Incorrect");
-		numIncorrect++;
-		$('.preview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
-		$('.preview-status').eq(currentCard).parent().css('color', '#ed5565');
+		setIncorrect();
 	}
 	printScore();
-	// Update scoreboardList
+	// Update overview
 }
 
+function setCorrect() {
+	cards[currentCard].status = 'correct'; // TODO if correct, skip in card list
+	$('.overview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
+	$('.overview-status').eq(currentCard).parent().css('color', '#a0d468');
+}
+
+function setIncorrect() {
+	cards[currentCard].status = 'incorrect';
+	$('.overview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
+	$('.overview-status').eq(currentCard).parent().css('color', '#ed5565');
+}
+
+// Print scoreboard changes to DOM
 function printScore() {
+	var numRemaining = cards.length;
+	var numCorrect = 0;
+	var numIncorrect = 0;
+	// count correct and incorrect cards in stack
+	for (var i = 0; i < cards.length; i++) {
+		if (cards[i].status === 'correct') {
+			numCorrect++;
+			numRemaining--;
+		} else if (cards[i].status === 'incorrect') {
+			numIncorrect++;
+		}
+	}
+	// update DOM
+	$(scoreboardTotalCards).html(cards.length);
+	$(scoreboardRemainingCards).html(numRemaining);
 	$(scoreboardCorrect).html(numCorrect);
 	$(scoreboardIncorrect).html(numIncorrect);
 }
+
 
 
 // HELPER FUNCTIONS
@@ -129,12 +150,12 @@ $(responseField).keypress(function(e) {
 	}
 });
 
-// Scoreboard Preview click
-//$('#scoreboardList li').on('click', showCard($(this).attr('data-index')));
+// Scoreboard overview click
+//$('#overview li').on('click', showCard($(this).attr('data-index')));
 
-$('#scoreboardList li').on('click', function() {
+$('#overview li').on('click', function() {
 	console.log(currentCard);
-	$('#scoreboardList li').eq(currentCard).removeClass('active');
+	$('#overview li').eq(currentCard).removeClass('active');
 	showCard($(this).attr('data-index'));
 	$(this).addClass('active');
 	$(responseField).focus();
@@ -152,7 +173,7 @@ $('#scoreboardList li').on('click', function() {
 
 // TODO fix holy grail layout
 
-
+// TODO next and previous cards function and buttons
 
 // TODO SUBMISSION
 /*

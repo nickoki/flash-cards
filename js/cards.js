@@ -5,7 +5,8 @@ function Card() {
 	return {
 		q: '',
 		a: '',
-		status: '',
+		status: 'unanswered',
+		originalIndex: 0,
 	}
 }
 
