@@ -39,10 +39,11 @@ function displayBoard() {
 
 // Submit Response, check for correctness
 function submitResponse() {
+	var res = $(responseField).html().toLowerCase(); // TODO Create cards function, format input
 	// check is response was right or wrong
-	if ($(responseField).html() == cards[currentCard].a) {
+	if (res == cards[currentCard].a) {
 		updateScore(true);
-	} else if ($(responseField).html() != '') {
+	} else if (res != '') {
 		updateScore(false);
 	}
 	// Check if all cards are correct
