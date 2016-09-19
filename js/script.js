@@ -2,7 +2,7 @@
 
 // GLOBAL VARIABLES
 var currentCard = 0; // counter for cards list
-
+var numCorrect = 0;
 
 
 // GAME FUNCTIONS
@@ -10,13 +10,17 @@ var currentCard = 0; // counter for cards list
 startGame();
 
 function startGame() {
-	currentCard = -1; // reset card counter
+	currentCard = 0; // reset card counter
 	displayBoard();
 	initScoreboard();
 	printScore();
 	clearInput();
 	$(responseField).focus();
-	nextCard();
+	// Update flashcard
+	$('#flashcard .prompt').html(cards[currentCard].q);
+	// Update scorboard overview
+	$('#overview li').eq(currentCard).addClass('active');
+	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 }
 
 // Display Board
@@ -27,34 +31,58 @@ function displayBoard() {
 
 // Submit Response, check for correctness
 function submitResponse() {
-	console.log($(responseField).html() + '... expected: ' + cards[currentCard].a);
+	// check is response was right or wrong
 	if ($(responseField).html() == cards[currentCard].a) {
 		updateScore(true);
 	} else {
 		updateScore(false);
 	}
-	nextCard();
-	// if correct, take out of list
-	// if wrong, keep in list
-	// go to next card
-	// TODO randomize wrong cards order
+	// Check if all cards are correct
+	if (numCorrect === cards.length) {
+		$('#overview li').eq(currentCard).removeClass('active');
+		endGame();
+	} else {
+		nextCard();
+	}
+	// TODO Randomize wrong cards order
 }
 
 // Move to next card in stack
 function nextCard() {
+
 	$('#overview li').eq(currentCard).removeClass('active');
-	currentCard++; // Move to next card
-	// check for last card
+
+	// Move to next unanswered/incorrect card
+	currentCard++;
+	console.log(currentCard);
+	// Check for last card
 	if (currentCard >= cards.length) {
-		console.log("End of cards");
-	} else {
-		// Update flashcard
-		$('#flashcard .prompt').html(cards[currentCard].q);
-		// Update scorboard overview
-		$('#overview li').eq(currentCard).addClass('active');
-		$('.overview-value').eq(currentCard).html(cards[currentCard].q);
-		// TODO add show all button
+		// If last card, return to start
+		currentCard = 0;
 	}
+
+	//Skip if already correct
+	while (cards[currentCard].status === 'correct') {
+		console.log('Question #' + currentCard + ' is correct');
+		console.log(numCorrect);
+		currentCard++;
+		// Check for last card
+		if (currentCard >= cards.length) {
+			// If last card, return to start
+			currentCard = 0;
+		}
+		console.log(currentCard);
+	}
+
+	// Update flashcard
+	$('#flashcard .prompt').html(cards[currentCard].q);
+	// Update scorboard overview
+	$('#overview li').eq(currentCard).addClass('active');
+	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+
+	// TODO Add show all button
+
+	console.log("===========");
 }
 
 // Show card
@@ -62,9 +90,13 @@ function showCard(i) {
 	currentCard = i;
 	$('#flashcard .prompt').html(cards[i].q);
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
-
 }
 
+function endGame() {
+	$('#flashcard .prompt').html("Congratulations! You're all done!");
+	$('.response-container').css('visibility', 'hidden');
+	$(responseField).blur();
+}
 
 
 // SCOREBOARD
@@ -92,6 +124,7 @@ function updateScore(isCorrect) {
 }
 
 function setCorrect() {
+	numCorrect++;
 	cards[currentCard].status = 'correct'; // TODO if correct, skip in card list
 	$('.overview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
 	$('.overview-status').eq(currentCard).parent().css('color', '#a0d468');

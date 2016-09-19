@@ -154,11 +154,12 @@ span:focus {
 	cursor: pointer;
 }
 
-.preview-status {
+.overview-status {
+	display: inline-block;
 	width: 24px;
 }
 
-.preview-value {
+.overview-value {
 	max-width: 224px;
 }
 
