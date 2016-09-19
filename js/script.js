@@ -74,7 +74,7 @@ function nextCard() {
 // Initialize scoreboard
 function initScoreboard() {
 	for (var i = 0; i < cards.length; i++) {
-		var scoreboardCard = '<li><span class="scoreStatus"><i class="fa fa-square-o" aria-hidden="true"></i></span>'+ cards[i].q + '</li>';
+		var scoreboardCard = '<li><span class="preview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="preview-value">'+ cards[i].q + '</span></li>';
 		$(scoreboardList).append(scoreboardCard);
 	}
 }
@@ -85,18 +85,12 @@ function updateScore(isCorrect) {
 	if (isCorrect) {
 		console.log("Correct!");
 		numCorrect++;
-		console.log(currentCard);
-		console.log($('.scoreStatus'));
-		console.log($('.scoreStatus').eq(currentCard));
-		$('.scoreStatus').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
+		$('.preview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
 		// TODO add skip button
 	} else {
 		console.log("Incorrect");
 		numIncorrect++;
-		console.log(currentCard);
-		console.log($('.scoreStatus'));
-		console.log($('.scoreStatus').eq(currentCard));
-		$('.scoreStatus').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
+		$('.preview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
 	}
 	printScore();
 	// Update scoreboardList

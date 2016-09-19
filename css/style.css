@@ -134,6 +134,8 @@ span:focus {
 }
 
 #scoreboardList li {
+	display: flex;
+	justify-content: flex-start;
 	margin-bottom: 0.4em;
 	font-size: 0.9em;
 	font-weight: 300;
@@ -141,8 +143,13 @@ span:focus {
 	color: #bec1c4;
 }
 
-.scoreStatus {
-	padding-right: 0.4em;
+.preview-status {
+
+	width: 24px;
+}
+
+.preview-value {
+	max-width: 224px;
 }
 
 /*
