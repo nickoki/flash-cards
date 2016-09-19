@@ -5,6 +5,7 @@ function Card() {
 	return {
 		q: '',
 		a: '',
+		status: '',
 	}
 }
 

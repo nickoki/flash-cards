@@ -145,6 +145,10 @@ span:focus {
 	color: #bec1c4;
 }
 
+#scoreboardList li.active {
+	background: #3e464f;
+}
+
 #scoreboardList li:hover {
 	background: #94989d;
 	cursor: pointer;
