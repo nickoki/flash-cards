@@ -9,8 +9,9 @@ var numCorrect = 0;
 // Start
 startGame();
 
+// Start game
 function startGame() {
-	currentCard = 0; // reset card counter
+	currentCard = 0;
 	displayBoard();
 	initScoreboard();
 	printScore();
@@ -21,6 +22,13 @@ function startGame() {
 	// Update scorboard overview
 	$('#overview li').eq(currentCard).addClass('active');
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+}
+
+// End game
+function endGame() {
+	$('#flashcard .prompt').html("Congratulations! You're all done!");
+	$('.response-container').css('visibility', 'hidden');
+	$(responseField).blur();
 }
 
 // Display Board
@@ -34,7 +42,7 @@ function submitResponse() {
 	// check is response was right or wrong
 	if ($(responseField).html() == cards[currentCard].a) {
 		updateScore(true);
-	} else {
+	} else if ($(responseField).html() != '') {
 		updateScore(false);
 	}
 	// Check if all cards are correct
@@ -47,42 +55,56 @@ function submitResponse() {
 	// TODO Randomize wrong cards order
 }
 
+
+
+// CARD FUNCTIONS
 // Move to next card in stack
 function nextCard() {
-
 	$('#overview li').eq(currentCard).removeClass('active');
-
 	// Move to next unanswered/incorrect card
 	currentCard++;
-	console.log(currentCard);
 	// Check for last card
 	if (currentCard >= cards.length) {
 		// If last card, return to start
 		currentCard = 0;
 	}
-
 	//Skip if already correct
 	while (cards[currentCard].status === 'correct') {
-		console.log('Question #' + currentCard + ' is correct');
-		console.log(numCorrect);
 		currentCard++;
-		// Check for last card
+		// Check for last card again
 		if (currentCard >= cards.length) {
 			// If last card, return to start
 			currentCard = 0;
 		}
-		console.log(currentCard);
 	}
-
 	// Update flashcard
 	$('#flashcard .prompt').html(cards[currentCard].q);
 	// Update scorboard overview
 	$('#overview li').eq(currentCard).addClass('active');
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
-
 	// TODO Add show all button
+}
 
-	console.log("===========");
+// Previous Card
+function previousCard() {
+	$('#overview li').eq(currentCard).removeClass('active');
+	currentCard--;
+	if (currentCard < 0) {
+		// If last card, return to start
+		currentCard = cards.length-1;
+	}
+	while (cards[currentCard].status === 'correct') {
+		currentCard--;
+		console.log(currentCard);
+		if (currentCard < 0) {
+			// If last card, return to start
+			currentCard = cards.length-1;
+		}
+	}
+
+	$('#flashcard .prompt').html(cards[currentCard].q);
+	$('#overview li').eq(currentCard).addClass('active');
+	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 }
 
 // Show card
@@ -92,15 +114,9 @@ function showCard(i) {
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 }
 
-function endGame() {
-	$('#flashcard .prompt').html("Congratulations! You're all done!");
-	$('.response-container').css('visibility', 'hidden');
-	$(responseField).blur();
-}
 
 
-// SCOREBOARD
-
+// SCOREBOARD FUNCTIONS
 // Initialize scoreboard
 function initScoreboard() {
 	for (var i = 0; i < cards.length; i++) {
@@ -110,6 +126,7 @@ function initScoreboard() {
 	}
 }
 
+// Update score
 function updateScore(isCorrect) {
 	// TODO tally score
 	// if correct
@@ -123,6 +140,7 @@ function updateScore(isCorrect) {
 	// Update overview
 }
 
+// Correct response
 function setCorrect() {
 	numCorrect++;
 	cards[currentCard].status = 'correct'; // TODO if correct, skip in card list
@@ -130,6 +148,7 @@ function setCorrect() {
 	$('.overview-status').eq(currentCard).parent().css('color', '#a0d468');
 }
 
+// Incorrect response
 function setIncorrect() {
 	cards[currentCard].status = 'incorrect';
 	$('.overview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
@@ -168,8 +187,10 @@ function clearInput() {
 
 
 // EVENT LISTENERS
+// Start button click
 $(startButton).on('click', startGame);
 
+// Response submission click
 $(responseButton).on('click', submitResponse);
 
 // Response submission [enter]
@@ -183,9 +204,7 @@ $(responseField).keypress(function(e) {
 	}
 });
 
-// Scoreboard overview click
-//$('#overview li').on('click', showCard($(this).attr('data-index')));
-
+// Overview click
 $('#overview li').on('click', function() {
 	console.log(currentCard);
 	$('#overview li').eq(currentCard).removeClass('active');
@@ -194,15 +213,22 @@ $('#overview li').on('click', function() {
 	$(responseField).focus();
 })
 
+// Previous Card
+$(previous).on('click', function() {
+	previousCard();
+	$(responseField).focus();
+})
+
+$(next).on('click', function() {
+	nextCard();
+	$(responseField).focus();
+})
+
 
 
 
 
 // TODO Write card flip animation function
-
-// TODO If wrong, keep card in rotation, randomize. If correct, remove from queue
-
-// TODO Scoreboard function
 
 // TODO fix holy grail layout
 

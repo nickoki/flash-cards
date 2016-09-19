@@ -50,7 +50,28 @@ aside ul {
 	width: 800px;
 }
 
-.card-container {}
+.card-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#previous,
+#next {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 1.5em;
+	border-radius: 30px;
+	width: 60px;
+	height: 300px;
+	font-size: 2em;
+}
+
+#previous:hover,
+#next:hover {
+	cursor: pointer;
+}
 
 #flashcard {
 	visibility: hidden;
