@@ -195,7 +195,6 @@ function previousCard() {
 	}
 	while (myDecks[currentDeck].cards[currentCard].status === 'correct') {
 		currentCard--;
-		console.log(currentCard);
 		if (currentCard < 0) {
 			// If last card, return to start
 			currentCard = myDecks[currentDeck].cards.length-1;
@@ -219,7 +218,8 @@ function showCard(i) {
 // SCOREBOARD FUNCTIONS
 // Initialize scoreboard
 function initScoreboard() {
-	$(scoreboard).css('visibility', 'visible');
+	var header = '<h3>Deck Overview</h3>';
+	$(overview).append(header);
 	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
 		var cardOverview = '<li data-index="' + i + '"><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">. . .</span></li>';
 		$(overview).append(cardOverview);
@@ -295,6 +295,8 @@ function printScore() {
 updateDeckList();
 function updateDeckList() {
 	$(deckList).html('');
+	var header = '<h3>Select a Deck</h3>';
+	$(deckList).append(header);
 	for (var i = 0; i < myDecks.length; i++) {
 		var deckName = '<li class="deck" value="' + i + '"><span>' + myDecks[i].name + '</span> (' + myDecks[i].cards.length + ' cards)</li>';
 		$(deckList).append(deckName);
@@ -366,14 +368,18 @@ $(responseField).keypress(function(e) {
 // Deck List click, activate
 $('.deck').on('click', activateDeck)
 
-
-
 // Overview click
 $('#overview').on('click', 'li', function() {
 	$('#overview li').eq(currentCard).removeClass('active');
 	showCard($(this).attr('data-index'));
 	$(this).addClass('active');
 	$(responseField).focus();
+})
+
+// New Deck Button
+$(newDeckButton).on('click', function() {
+	newDeck();
+	location.reload();
 })
 
 // Previous Card
@@ -412,3 +418,5 @@ Deploy online
 // TODO add 5 user stories
 
 // TODO multiple correct answers
+
+// TODO add max characters for cards and deck names

@@ -42,6 +42,17 @@ function newCard() {
 	addCardToTable((myDecks[currentDeck].cards.length)-1);
 }
 
+// Create a new Deck
+function newDeck() {
+	var newDeck = new Deck();
+	newDeck.name = 'New Deck';
+	var firstCard = new Card();
+	newDeck.cards.push(firstCard);
+
+	myDecks.push(newDeck);
+	saveDeckEdits();
+}
+
 
 
 // Save to local storage
@@ -52,6 +63,16 @@ function saveDeckEdits() {
 
 
 // EVENT LISTENERS
+
+// Rename Deck button listener
+$(deleteDeckButton).on('click', function() {
+	var x = confirm('Are you sure you want to delete your deck: ' + myDecks[currentDeck].name + '?');
+	if (x == true) {
+		myDecks.splice(currentDeck, 1);
+		saveDeckEdits();
+		location.reload();
+	}
+})
 
 // Rename Deck button listener
 $(renameDeckButton).on('click', function() {

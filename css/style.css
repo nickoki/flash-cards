@@ -16,6 +16,19 @@ body {
 	color: #fff;
 }
 
+h1 {
+	font-size: 4em;
+}
+
+h2 {
+	font-size: 2.2em;
+}
+
+nav h2 {
+	margin: 1em;
+	text-align: center;
+}
+
 nav,
 aside {
 	display: block;
@@ -32,6 +45,11 @@ aside ul {
 	list-style: none;
 }
 
+nav h3,
+aside h3 {
+	text-align: center;
+}
+
 .nav-button {
 	border-radius: 8px;
 	padding: 1.2em;
@@ -42,7 +60,7 @@ aside ul {
 	letter-spacing: 0.3em;
 }
 
-ul .nav-button:first-of-type {
+ul .nav-button:not(:last-child) {
 	margin-bottom: 1em;
 }
 
@@ -59,9 +77,50 @@ ul .nav-button:first-of-type {
 
 
 /* == DECKLIST == */
+#overview li,
+#deckList li {
+	display: flex;
+	margin: 0.2em 0;
+	padding: 0.2em 0.8em;
+	font-size: 0.9em;
+	font-weight: 300;
+	font-style: italic;
+	color: #bec1c4;
+}
+
+#overview li {
+	justify-content: flex-start;
+}
+
+#deckList li {
+	justify-content: space-between;
+}
+
+#overview li.active,
+#deckList li.active {
+	background: #3e464f;
+}
+
+#overview li:hover,
+#deckList li:hover {
+	background: #94989d;
+	cursor: pointer;
+}
+
+.overview-status {
+	display: inline-block;
+	width: 24px;
+}
+
+.overview-value {
+	max-width: 224px;
+}
+
+#overview,
 #deckList {
 	margin: 1em;
 	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
 	padding: 0.6em 0;
 }
 
@@ -71,6 +130,11 @@ ul .nav-button:first-of-type {
 
 .deck:hover {
 	background: #94989d;
+}
+
+.deck span {
+	margin-right: 0.6em;
+	font-weight: 700;
 }
 
 
@@ -165,8 +229,6 @@ ul .nav-button:first-of-type {
 
 #scoreboard {
 	margin: 1em;
-	border-top: 1px solid #fff;
-	border-bottom: 1px solid #fff;
 	padding: 0.6em 0;
 	list-style: none;
 }
@@ -193,50 +255,26 @@ ul .nav-button:first-of-type {
 	color: #ed5565;
 }
 
-#overview li,
-#deckList li {
-	display: flex;
-	justify-content: flex-start;
-	margin: 0.2em 0;
-	padding: 0.2em;
-	font-size: 0.9em;
-	font-weight: 300;
-	font-style: italic;
-	color: #bec1c4;
-}
-
-#overview li.active {
-	background: #3e464f;
-}
-
-#overview li:hover,
-#deckList li:hover {
-	background: #94989d;
-	cursor: pointer;
-}
-
-.overview-status {
-	display: inline-block;
-	width: 24px;
-}
-
-.overview-value {
-	max-width: 224px;
-}
-
 
 
 /* == EDIT DECKS == */
 .edit-container {
 	display: inline-block;
+	margin-top: 40px;
 	padding: 10px;
 	width: 98%;
+	text-align: center;
 	font-size: 10pt;
 	font-weight: 300;
 }
 
+.edit-container h1 {
+	display: inline;
+}
+
 .edit-table {
 	border-collapse: collapse;
+	margin-top: 40px;
 	width: 100%;
 }
 
@@ -275,11 +313,11 @@ ul .nav-button:first-of-type {
 }
 
 .delete-button {
-	background: #ed5565;
+	background: #656d78;
 }
 
 .delete-button:hover {
-	background: #da4453;
+	background: #434a54;
 }
 
 .save-button {
@@ -298,11 +336,27 @@ ul .nav-button:first-of-type {
 	background: #aab2bd;
 }
 
-#editControls .nav-button {
+#deleteDeckButton {
+	background: #656d78;
+}
+
+#deleteDeckButton:hover {
+	background: #434a54;
+}
+
+#renameDeckButton {
+	background: #656d78;
+}
+
+#renameDeckButton:hover {
+	background: #434a54;
+}
+
+#addCardButton {
 	background: #FFCE54;
 }
 
-#editControls .nav-button:hover {
+#addCardButton:hover {
 	background: #F6BB42;
 }
 

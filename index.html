@@ -11,12 +11,15 @@
 
 	<body>
 		<nav class="sidebar">
-			<h2 class="deck-name"></h2>
+			<!-- <h2 class="deck-name"></h2> -->
 			<ul>
 				<li id="startButton" class="nav-button">Start</li>
 				<li id="editButton" class="nav-button">Edit</li>
 			</ul>
 			<ul id="deckList"></ul>
+			<ul>
+				<li id="newDeckButton" class="nav-button">New Deck</li>
+			</ul>
 		</nav>
 
 		<div class="container">
@@ -32,13 +35,14 @@
 				<div id="responseButton" class="submit nav-button" value="Submit">Submit</div>
 			</div>
 			<div class="edit-container hidden">
-				<h1 class="deck-name" contenteditable="true"></h1>
+				<h1 class="deck-name" contenteditable="true" maxlength="20"></h1>
 				<table class="edit-table"></table>
 			</div>
 		</div>
 
 		<aside>
 			<ul id="editControls" class="hidden">
+				<li id="deleteDeckButton" class="nav-button">Delete Deck</li>
 				<li id="renameDeckButton" class="nav-button">Rename Deck</li>
 				<li id="addCardButton" class="nav-button">Add Card</li>
 			</ul>
