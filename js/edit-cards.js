@@ -36,6 +36,11 @@ $('.edit-table').on('click', '.save-button', function() {
 	myDecks[currentDeck].cards[i].q = $(this).parent().siblings().eq(1).html();
 })
 
+$('.edit-table').on('click', '.cancel-button', function() {
+	clearEditTable();
+	updateEditTable();
+})
+
 
 
 // TODO cursor to end of line on table cell click
