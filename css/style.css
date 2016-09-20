@@ -57,6 +57,23 @@ ul .nav-button:first-of-type {
 
 
 
+/* == DECKLIST == */
+#deckList {
+	margin: 1em;
+	border-top: 1px solid #fff;
+	padding: 0.6em 0;
+}
+
+.deck.active {
+	background: #3e464f;
+}
+
+.deck:hover {
+	background: #94989d;
+}
+
+
+
 /* == FLASH CARD GAME == */
 
 .container {

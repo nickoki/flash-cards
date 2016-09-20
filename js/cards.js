@@ -1,6 +1,14 @@
 /* cards.js */
 
+// Deck of cards constructor
+function Deck() {
+	return {
+		name: '',
+		cards: [],
+	}
+}
 
+// Individual card constructor, added to cards[] in Deck object
 function Card() {
 	return {
 		q: '',
@@ -10,41 +18,69 @@ function Card() {
 	}
 }
 
-var cards = [];
+var card1a = new Card();
+card1a.q = 'What is the git command to add all files with changes to your repo?';
+card1a.a = 'git add .';
 
-var card1 = new Card();
-card1.q = 'What is your name?';
-card1.a = 'nick';
+var card2a = new Card();
+card2a.q = 'What problem does git solve?';
+card2a.a = 'version control';
 
-var card2 = new Card();
-card2.q = 'How old are you?';
-card2.a = 25;
+var card3a = new Card();
+card3a.q = 'What is the git command to intialize a new git repository?';
+card3a.a = 'git init';
 
-var card3 = new Card();
-card3.q = 'What full-time course are you taking at GA?';
-card3.a = 'wdi';
+var card4a = new Card();
+card4a.q = 'What is the command to move your commits to an online GitHub repo?';
+card4a.a = 'git push origin master';
 
-var card4 = new Card();
-card4.q = 'A';
-card4.a = 'a';
+var deckName1 = "git";
 
-var card5 = new Card();
-card5.q = 'B';
-card5.a = 'b';
+var deck1 = new Deck();
 
-var card6 = new Card();
-card6.q = 'C';
-card6.a = 'c';
+deck1.name = deckName1;
+deck1.cards.push(card1a);
+deck1.cards.push(card2a);
+deck1.cards.push(card3a);
+deck1.cards.push(card4a);
 
-cards.push(card1);
-cards.push(card2);
-cards.push(card3);
-cards.push(card4);
-cards.push(card5);
-cards.push(card6);
 
+
+var card1b = new Card();
+card1b.q = 'What does CSS stand for?';
+card1b.a = 'cascading style sheets';
+
+var card2b = new Card();
+card2b.q = 'What is the CSS property to change font color?';
+card2b.a = 'color';
+
+var card3b = new Card();
+card3b.q = 'What is the full CSS property and value to implement flexbox?';
+card3b.a = 'display: flex;';
+
+var card4b = new Card();
+card4b.q = 'What character is used in CSS to identify an html id attribute?';
+card4b.a = '#';
+
+var card5b = new Card();
+card5b.q = 'What character is used in CSS to identify an html class attribute?';
+card5b.a = '.';
+
+var deckName2 = "CSS";
+
+var deck2 = new Deck();
+
+deck2.name = deckName2;
+deck2.cards.push(card1b);
+deck2.cards.push(card2b);
+deck2.cards.push(card3b);
+deck2.cards.push(card4b);
+deck2.cards.push(card5b);
 
 var decks = [];
-var deckName = "Deck 1"
-localStorage.setItem(deckName, cards);
-decks.push(deckName);
+
+decks.push(deck1);
+decks.push(deck2);
+
+
+localStorage.setItem('Flashcard Decks', JSON.stringify(decks));

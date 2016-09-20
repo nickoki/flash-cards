@@ -3,6 +3,8 @@
 
 
 // GLOBAL VARIABLES
+var myDecks = JSON.parse(localStorage.getItem('Flashcard Decks'));
+var currentDeck = 0;
 var currentCard = 0; // counter for cards list
 var numCorrect = 0;
 
@@ -27,10 +29,10 @@ function startGame() {
 	clearInput();
 	$(responseField).focus();
 	// Update flashcard
-	$('#flashcard .prompt').html(cards[currentCard].q);
+	$('#flashcard .prompt').html(myDecks[currentDeck].cards[currentCard].q);
 	// Update scorboard overview
 	$('#overview li').eq(currentCard).addClass('active');
-	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 }
 
 // Toggle Functions
@@ -94,13 +96,13 @@ function displayBoard() {
 function submitResponse() {
 	var res = $(responseField).html().toLowerCase(); // TODO Create cards function, format input
 	// check is response was right or wrong
-	if (res == cards[currentCard].a) {
+	if (res == myDecks[currentDeck].cards[currentCard].a) {
 		updateScore(true);
 	} else if (res != '') {
 		updateScore(false);
 	}
 	// Check if all cards are correct
-	if (numCorrect === cards.length) {
+	if (numCorrect === myDecks[currentDeck].cards.length) {
 		$('#overview li').eq(currentCard).removeClass('active');
 		endGame();
 	} else {
@@ -118,24 +120,24 @@ function nextCard() {
 	// Move to next unanswered/incorrect card
 	currentCard++;
 	// Check for last card
-	if (currentCard >= cards.length) {
+	if (currentCard >= myDecks[currentDeck].cards.length) {
 		// If last card, return to start
 		currentCard = 0;
 	}
 	//Skip if already correct
-	while (cards[currentCard].status === 'correct') {
+	while (myDecks[currentDeck].cards[currentCard].status === 'correct') {
 		currentCard++;
 		// Check for last card again
-		if (currentCard >= cards.length) {
+		if (currentCard >= myDecks[currentDeck].cards.length) {
 			// If last card, return to start
 			currentCard = 0;
 		}
 	}
 	// Update flashcard
-	$('#flashcard .prompt').html(cards[currentCard].q);
+	$('#flashcard .prompt').html(myDecks[currentDeck].cards[currentCard].q);
 	// Update scorboard overview
 	$('#overview li').eq(currentCard).addClass('active');
-	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 	// TODO Add show all button
 }
 
@@ -145,27 +147,27 @@ function previousCard() {
 	currentCard--;
 	if (currentCard < 0) {
 		// If last card, return to start
-		currentCard = cards.length-1;
+		currentCard = myDecks[currentDeck].cards.length-1;
 	}
-	while (cards[currentCard].status === 'correct') {
+	while (myDecks[currentDeck].cards[currentCard].status === 'correct') {
 		currentCard--;
 		console.log(currentCard);
 		if (currentCard < 0) {
 			// If last card, return to start
-			currentCard = cards.length-1;
+			currentCard = myDecks[currentDeck].cards.length-1;
 		}
 	}
 
-	$('#flashcard .prompt').html(cards[currentCard].q);
+	$('#flashcard .prompt').html(myDecks[currentDeck].cards[currentCard].q);
 	$('#overview li').eq(currentCard).addClass('active');
-	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+	$('.overview-value').eq(currentCard).html(cmyDecks[currentDeck].ards[currentCard].q);
 }
 
 // Show card
 function showCard(i) {
 	currentCard = i;
-	$('#flashcard .prompt').html(cards[i].q);
-	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
+	$('#flashcard .prompt').html(myDecks[currentDeck].cards[i].q);
+	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 }
 
 
@@ -174,7 +176,7 @@ function showCard(i) {
 // Initialize scoreboard
 function initScoreboard() {
 	$(scoreboard).css('visibility', 'visible');
-	for (var i = 0; i < cards.length; i++) {
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
 		var cardOverview = '<li data-index="' + i + '"><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">. . .</span></li>';
 		$(overview).append(cardOverview);
 	}
@@ -200,42 +202,42 @@ function updateScore(isCorrect) {
 
 function resetScore() {
 	numCorrect = 0;
-	for (var i = 0; i < cards.length; i++) {
-		cards[i].status = 'unanswered';
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
+		myDecks[currentDeck].cards[i].status = 'unanswered';
 	}
 }
 
 // Correct response
 function setCorrect() {
 	numCorrect++;
-	cards[currentCard].status = 'correct'; // TODO if correct, skip in card list
+	myDecks[currentDeck].cards[currentCard].status = 'correct'; // TODO if correct, skip in card list
 	$('.overview-status').eq(currentCard).html('<i class="fa fa-check" aria-hidden="true"></i>');
 	$('.overview-status').eq(currentCard).parent().css('color', '#a0d468');
 }
 
 // Incorrect response
 function setIncorrect() {
-	cards[currentCard].status = 'incorrect';
+	myDecks[currentDeck].cards[currentCard].status = 'incorrect';
 	$('.overview-status').eq(currentCard).html('<i class="fa fa-times" aria-hidden="true"></i>');
 	$('.overview-status').eq(currentCard).parent().css('color', '#ed5565');
 }
 
 // Print scoreboard changes to DOM
 function printScore() {
-	var numRemaining = cards.length;
+	var numRemaining = myDecks[currentDeck].cards.length;
 	var numCorrect = 0;
 	var numIncorrect = 0;
 	// count correct and incorrect cards in stack
-	for (var i = 0; i < cards.length; i++) {
-		if (cards[i].status === 'correct') {
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
+		if (myDecks[currentDeck].cards[i].status === 'correct') {
 			numCorrect++;
 			numRemaining--;
-		} else if (cards[i].status === 'incorrect') {
+		} else if (myDecks[currentDeck].cards[i].status === 'incorrect') {
 			numIncorrect++;
 		}
 	}
 	// update DOM
-	$(scoreboardTotalCards).html(cards.length);
+	$(scoreboardTotalCards).html(myDecks[currentDeck].cards.length);
 	$(scoreboardRemainingCards).html(numRemaining);
 	$(scoreboardCorrect).html(numCorrect);
 	$(scoreboardIncorrect).html(numIncorrect);
@@ -246,14 +248,20 @@ function printScore() {
 // DECKLIST FUNCTIONS
 updateDeckList();
 function updateDeckList() {
-	var deckName = '<li class="deck">' + decks[0] + ' (' + decks[0].length + ' cards)</li>';
-	var subNav = '<ul><li>Start</li><li>Edit</li></ul>'
-	$(deckList).append(deckName);
+	for (var i = 0; i < myDecks.length; i++) {
+		var deckName = '<li class="deck">' + myDecks[i].name + ' (' + myDecks[i].cards.length + ' cards)</li>';
+		$(deckList).append(deckName);
+	}
 }
 
-function addSubNav() {
-
+function activateDeck() {
+	for (var i = 0; i < myDecks.length; i++) {
+		$('.deck').eq(i).removeClass('active');
+	}
+	$(this).addClass('active');
+	// TODO add fa
 }
+
 
 
 
@@ -285,6 +293,11 @@ $(responseField).keypress(function(e) {
 		// TODO disable return character
 	}
 });
+
+// Deck List accordion
+$('.deck').on('click', activateDeck);
+
+
 
 // Overview click
 $('#overview li').on('click', function() {
