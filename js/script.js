@@ -230,6 +230,10 @@ function clearOverview() {
 	$(overview).html('');
 }
 
+function clearEditTable() {
+	$('.edit-table').html('');
+}
+
 // Update score
 function updateScore(isCorrect) {
 	// TODO tally score
@@ -339,6 +343,8 @@ $(editButton).on('click', function() {
 	hideFlashcard();
 	hideInput();
 	hideScoreboard();
+
+	clearEditTable();
 	displayEditContainer();
 	displayEditControls();
 	updateEditTable();
