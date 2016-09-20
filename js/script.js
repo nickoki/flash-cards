@@ -160,7 +160,7 @@ function previousCard() {
 
 	$('#flashcard .prompt').html(myDecks[currentDeck].cards[currentCard].q);
 	$('#overview li').eq(currentCard).addClass('active');
-	$('.overview-value').eq(currentCard).html(cmyDecks[currentDeck].ards[currentCard].q);
+	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 }
 
 // Show card
@@ -297,16 +297,17 @@ $(responseField).keypress(function(e) {
 	}
 });
 
-// Deck List accordion
+// Deck List click, activate
 $('.deck').on('click', activateDeck);
 
 
 
 // Overview click
-$('#overview li').on('click', function() {
-	console.log(currentCard);
+$('#overview').on('click', 'li', function() {
 	$('#overview li').eq(currentCard).removeClass('active');
-	showCard($(this).attr('data-index'));
+	var j = $(this).attr('data-index');
+	console.log(j);
+	showCard(j);
 	$(this).addClass('active');
 	$(responseField).focus();
 })

@@ -1,6 +1,23 @@
 # flash-cards
 GA WDI Project 1
 
+## Functionality
+
+#### Objects
+
+	* Card
+	* Deck
+
+#### Elements
+
+	* Navigation
+	* Deck List
+	* Flashcard Display
+	* Input Field
+	* Scoreboard & Card Overview
+
+
+
 # Submission
 Submit project as an **issue** to this repo:
 
