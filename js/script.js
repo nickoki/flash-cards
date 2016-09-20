@@ -307,6 +307,7 @@ function activateDeck() {
 		$('.deck').eq(i).removeClass('active');
 	}
 	$(this).addClass('active');
+	currentDeck = $('.deck.active').attr('value');
 	// TODO add fa
 }
 
@@ -330,13 +331,6 @@ function updateDeckName() {
 // EVENT LISTENERS
 // Start button click
 $(startButton).on('click',function() {
-	for (var i = 0; i < myDecks.length; i++) {
-		if ($('.deck').eq(i).hasClass('active')) {
-			currentDeck = $('.deck.active').attr('value');
-		} else {
-			currentDeck = 0;
-		}
-	}
 	startGame();
 })
 
@@ -351,6 +345,7 @@ $(editButton).on('click', function() {
 	displayEditContainer();
 	displayEditControls();
 	updateEditTable();
+	updateDeckName();
 })
 
 // Response submission click
