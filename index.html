@@ -11,6 +11,7 @@
 
 	<body>
 		<nav class="sidebar">
+			<h2 class="deck-name"></h2>
 			<ul>
 				<li id="startButton" class="nav-button">Start</li>
 				<li id="editButton" class="nav-button">Edit</li>
@@ -20,15 +21,28 @@
 
 		<div class="container">
 			<div class="card-container">
-				<div id="previous"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-				<div id="flashcard" class="card">
+				<div id="previous" class="hidden"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+				<div id="flashcard" class="card hidden">
 					<h2 class="prompt">Example prompt goes in this space.</Example></h2>
 				</div>
-				<div id="next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+				<div id="next" class="hidden"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
 			</div>
-			<div class="response-container">
+			<div class="response-container hidden">
 				<span id="responseField" contenteditable="true"></span>
 				<div id="responseButton" class="submit nav-button" value="Submit">Submit</div>
+			</div>
+			<div class="edit-container hidden">
+				<h1 class="deck-name"></h1>
+				<div id="renameDeckButton"></div>
+				<div id="newCardButton"></div>
+				<table class="edit-table">
+					<tr class="labels">
+						<th>#</th>
+						<th>Question</th>
+						<th>Answer</th>
+						<th>Options</th>
+					</tr>
+				</table>
 			</div>
 		</div>
 

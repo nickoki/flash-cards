@@ -12,7 +12,6 @@ var numCorrect = 0;
 // GAME FUNCTIONS
 // Start game
 function startGame() {
-	// TODO fix "overstart"
 	toggleStartButton();
 
 	currentCard = 0;
@@ -60,30 +59,54 @@ function endGame() {
 }
 
 // DISPLAY FUNCTIONS
+function displayCardContainer() {
+	$('.card-container').removeClass('hidden');
+}
+
+function hideCardContainer() {
+	$('.card-container').addClass('hidden');
+}
+
+function displayResponseContainer() {
+	$('.response-container').removeClass('hidden');
+}
+
+function hideResponseContainer() {
+	$('.response-container').addClass('hidden');
+}
+
+function displayEditContainer() {
+	$('.edit-container').removeClass('hidden');
+}
+
+function hideEditContainer() {
+	$('.edit-container').addClass('hidden');
+}
+
 function displayFlashcard() {
-	$(flashcard).css('visibility', 'visible');
+	$(flashcard).removeClass('hidden');
 }
 
 function hideFlashcard() {
-	$(flashcard).css('visibility', 'hidden');
+	$(flashcard).addClass('hidden');
 }
 
 function displayArrows() {
-	$(previous).css('visibility', 'visible');
-	$(next).css('visibility', 'visible');
+	$(previous).removeClass('hidden');
+	$(next).removeClass('hidden');
 }
 
 function hideArrows() {
-	$(previous).css('visibility', 'hidden');
-	$(next).css('visibility', 'hidden');
+	$(previous).addClass('hidden');
+	$(next).addClass('hidden');
 }
 
 function displayInput() {
-	$('.response-container').css('visibility', 'visible');
+	$('.response-container').removeClass('hidden');
 }
 
 function hideInput() {
-	$('.response-container').css('visibility', 'hidden');
+	$('.response-container').addClass('hidden');
 }
 
 /*
@@ -275,18 +298,32 @@ function clearInput() {
 
 // EVENT LISTENERS
 // Start button click
-$(startButton).on('click', function() {
-	if ($('.deck.active') === null) {
-		currentDeck = $('.deck.active').attr('value');
+$(startButton).on('click',function() {
+	for (var i = 0; i < myDecks.length; i++) {
+		if ($('.deck').eq(i).hasClass('active')) {
+			console.log('dude');
+			currentDeck = $('.deck.active').attr('value');
+		} else {
+			currentDeck = 0;
+		}
 	}
 	startGame();
-});
+})
+
+// Edit button click
+$(editButton).on('click', function() {
+	hideCardContainer();
+	hideArrows();
+	hideFlashcard();
+	hideInput();
+	displayEditContainer();
+})
 
 // Response submission click
 $(responseButton).on('click', function() {
 	submitResponse();
 	clearInput();
-});
+})
 
 // Response submission [enter]
 $(responseField).keypress(function(e) {
@@ -294,13 +331,11 @@ $(responseField).keypress(function(e) {
 		e.preventDefault();
 		submitResponse();
 		clearInput();
-		// TODO clear input field
-		// TODO disable return character
 	}
 });
 
 // Deck List click, activate
-$('.deck').on('click', activateDeck);
+$('.deck').on('click', activateDeck)
 
 
 
