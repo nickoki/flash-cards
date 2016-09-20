@@ -21,3 +21,5 @@ function updateEditTable() {
 		$('.edit-table').append(entry);
 	}
 }
+
+// TODO cursor to end of line on table cell click
