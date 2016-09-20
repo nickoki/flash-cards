@@ -226,11 +226,10 @@ function initScoreboard() {
 	}
 }
 
+// clear Overview list
 function clearOverview() {
 	$(overview).html('');
 }
-
-
 
 // Update score
 function updateScore(isCorrect) {
@@ -246,6 +245,7 @@ function updateScore(isCorrect) {
 	// Update overview
 }
 
+// Set Scores back to 0
 function resetScore() {
 	numCorrect = 0;
 	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
@@ -296,7 +296,7 @@ updateDeckList();
 function updateDeckList() {
 	$(deckList).html('');
 	for (var i = 0; i < myDecks.length; i++) {
-		var deckName = '<li class="deck" value="' + i + '">' + myDecks[i].name + ' (' + myDecks[i].cards.length + ' cards)</li>';
+		var deckName = '<li class="deck" value="' + i + '"><span>' + myDecks[i].name + '</span> (' + myDecks[i].cards.length + ' cards)</li>';
 		$(deckList).append(deckName);
 	}
 	$('#deckList li').eq(0).addClass('active');
@@ -317,6 +317,12 @@ function activateDeck() {
 // Clear response input field
 function clearInput() {
 	$(responseField).html('');
+}
+
+// update Deck name
+updateDeckName();
+function updateDeckName() {
+	$('.deck-name').html(myDecks[currentDeck].name);
 }
 
 

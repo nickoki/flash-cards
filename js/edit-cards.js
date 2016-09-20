@@ -52,6 +52,17 @@ function saveDeckEdits() {
 
 
 // EVENT LISTENERS
+
+// Rename Deck button listener
+$(renameDeckButton).on('click', function() {
+	var newName = $('.edit-container .deck-name').html();
+	myDecks[currentDeck].name = newName;
+	saveDeckEdits();
+	updateDeckName();
+	// Update deck name in desklist
+	$('.deck.active span').html(newName);
+})
+
 // New Card button listener
 $(addCardButton).on('click', newCard);
 

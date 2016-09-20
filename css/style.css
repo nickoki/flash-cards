@@ -33,7 +33,8 @@ aside ul {
 }
 
 .nav-button {
-	padding: 1.2em 0;
+	border-radius: 8px;
+	padding: 1.2em;
 	background: #4fc1e9;
 	color: #fff;
 	text-align: center;
@@ -251,7 +252,7 @@ ul .nav-button:first-of-type {
 }
 
 .options-column {
-	min-width: 168px;
+	min-width: 258px;
 }
 
 .table-button {
@@ -265,12 +266,20 @@ ul .nav-button:first-of-type {
 	letter-spacing: 0.1em;
 }
 
-.table-button:first-of-type {
+.table-button:not(:last-child) {
 	margin-right: 1em;
 }
 
 .table-button:hover {
 	cursor: pointer;
+}
+
+.delete-button {
+	background: #ed5565;
+}
+
+.delete-button:hover {
+	background: #da4453;
 }
 
 .save-button {
@@ -287,6 +296,14 @@ ul .nav-button:first-of-type {
 
 .cancel-button:hover {
 	background: #aab2bd;
+}
+
+#editControls .nav-button {
+	background: #FFCE54;
+}
+
+#editControls .nav-button:hover {
+	background: #F6BB42;
 }
 
 
