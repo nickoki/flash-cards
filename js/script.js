@@ -276,7 +276,9 @@ function clearInput() {
 // EVENT LISTENERS
 // Start button click
 $(startButton).on('click', function() {
-	currentDeck = $('.deck.active').attr('value');
+	if ($('.deck.active') === null) {
+		currentDeck = $('.deck.active').attr('value');
+	}
 	startGame();
 });
 
@@ -305,9 +307,7 @@ $('.deck').on('click', activateDeck);
 // Overview click
 $('#overview').on('click', 'li', function() {
 	$('#overview li').eq(currentCard).removeClass('active');
-	var j = $(this).attr('data-index');
-	console.log(j);
-	showCard(j);
+	showCard($(this).attr('data-index'));
 	$(this).addClass('active');
 	$(responseField).focus();
 })
