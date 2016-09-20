@@ -3,8 +3,6 @@
 
 
 // GLOBAL VARIABLES
-
-
 var currentCard = 0; // counter for cards list
 var numCorrect = 0;
 
@@ -14,10 +12,16 @@ var numCorrect = 0;
 // Start game
 function startGame() {
 	// TODO fix "overstart"
+	toggleStartButton();
+
 	currentCard = 0;
-	displayBoard();
-	$(previous).css('visibility', 'visible');
-	$(next).css('visibility', 'visible');
+
+	displayFlashcard();
+	displayArrows();
+	displayInput();
+
+
+	clearOverview();
 	initScoreboard();
 	printScore();
 	clearInput();
@@ -28,6 +32,17 @@ function startGame() {
 	$('#overview li').eq(currentCard).addClass('active');
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 }
+
+// Toggle Functions
+function toggleStartButton() {
+	if ($(startButton).has('.disabled')) {
+		$(startButton).removeClass('disabled');
+	} else {
+		$(startButton).addClass('disabled');
+	}
+}
+
+
 
 // TODO Reset game function
 
@@ -42,11 +57,38 @@ function endGame() {
 	$(overview).children().css('pointer-events', 'none');
 }
 
-// Display Board
+// DISPLAY FUNCTIONS
+function displayFlashcard() {
+	$(flashcard).css('visibility', 'visible');
+}
+
+function hideFlashcard() {
+	$(flashcard).css('visibility', 'hidden');
+}
+
+function displayArrows() {
+	$(previous).css('visibility', 'visible');
+	$(next).css('visibility', 'visible');
+}
+
+function hideArrows() {
+	$(previous).css('visibility', 'hidden');
+	$(next).css('visibility', 'hidden');
+}
+
+function displayInput() {
+	$('.response-container').css('visibility', 'visible');
+}
+
+function hideInput() {
+	$('.response-container').css('visibility', 'hidden');
+}
+
+/*
 function displayBoard() {
 	$(flashcard).css('visibility', 'visible');
 	$('.response-container').css('visibility', 'visible');
-}
+}*/
 
 // Submit Response, check for correctness
 function submitResponse() {
@@ -131,11 +173,15 @@ function showCard(i) {
 // SCOREBOARD FUNCTIONS
 // Initialize scoreboard
 function initScoreboard() {
+	$(scoreboard).css('visibility', 'visible');
 	for (var i = 0; i < cards.length; i++) {
-		//var scoreboardCard = '<li><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">'+ cards[i].q + '</span></li>';
-		var scoreboardCard = '<li data-index="' + i + '"><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">. . .</span></li>';
-		$(overview).append(scoreboardCard);
+		var cardOverview = '<li data-index="' + i + '"><span class="overview-status"><i class="fa fa-square-o" aria-hidden="true"></i></span><span class="overview-value">. . .</span></li>';
+		$(overview).append(cardOverview);
 	}
+}
+
+function clearOverview() {
+	$(overview).html('');
 }
 
 // Update score
@@ -259,6 +305,8 @@ $(next).on('click', function() {
 // TODO fix holy grail layout
 
 // TODO Solve button
+
+// TODO Test for different viewports
 
 // TODO SUBMISSION
 /*

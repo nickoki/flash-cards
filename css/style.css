@@ -1,6 +1,10 @@
 /* style.css */
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
 
+
+
+/* == GLOBAL SETTINGS == */
+
 body {
 	display: flex;
 	justify-content: space-between;
@@ -45,6 +49,15 @@ ul .nav-button:first-of-type {
 	background: #3bafda;
 	cursor: pointer;
 }
+
+.disabled {
+	pointer-events: none;
+	background: #aab2bd;
+}
+
+
+
+/* == FLASH CARD GAME == */
 
 .container {
 	display: flex;
@@ -96,6 +109,12 @@ ul .nav-button:first-of-type {
 	text-align: center;
 }
 
+.prompt {
+	padding: 0 2em;
+	font-size: 2em;
+	font-weight: 300;
+}
+
 .response-container {
 	visibility: hidden;
 	display: flex;
@@ -104,12 +123,6 @@ ul .nav-button:first-of-type {
 	margin: 2em;
 	width: 800px;
 	height: 180px;
-}
-
-.prompt {
-	padding: 0 2em;
-	font-size: 2em;
-	font-weight: 300;
 }
 
 #responseField {
@@ -123,7 +136,7 @@ ul .nav-button:first-of-type {
 	text-align: center;
 }
 
-span:focus {
+#responseField:focus {
 	outline: none;
 }
 
@@ -134,7 +147,10 @@ span:focus {
 	width: 123px;
 }
 
+/* == SCOREBOARD ASIDE == */
+
 #scoreboard {
+	visibility: hidden;
 	margin: 1em;
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #fff;
