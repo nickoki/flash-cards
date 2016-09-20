@@ -249,7 +249,7 @@ function printScore() {
 updateDeckList();
 function updateDeckList() {
 	for (var i = 0; i < myDecks.length; i++) {
-		var deckName = '<li class="deck">' + myDecks[i].name + ' (' + myDecks[i].cards.length + ' cards)</li>';
+		var deckName = '<li class="deck" value="' + i + '">' + myDecks[i].name + ' (' + myDecks[i].cards.length + ' cards)</li>';
 		$(deckList).append(deckName);
 	}
 }
@@ -275,7 +275,10 @@ function clearInput() {
 
 // EVENT LISTENERS
 // Start button click
-$(startButton).on('click', startGame);
+$(startButton).on('click', function() {
+	currentDeck = $('.deck.active').attr('value');
+	startGame();
+});
 
 // Response submission click
 $(responseButton).on('click', function() {
@@ -342,3 +345,5 @@ Deploy online
 // TODO Card animations
 
 // TODO add 5 user stories
+
+// TODO multiple correct answers
