@@ -7,7 +7,6 @@ var currentCard = 0; // counter for cards list
 var numCorrect = 0;
 
 
-
 // GAME FUNCTIONS
 // Start game
 function startGame() {
@@ -23,6 +22,7 @@ function startGame() {
 
 	clearOverview();
 	initScoreboard();
+	resetScore();
 	printScore();
 	clearInput();
 	$(responseField).focus();
@@ -198,6 +198,13 @@ function updateScore(isCorrect) {
 	// Update overview
 }
 
+function resetScore() {
+	numCorrect = 0;
+	for (var i = 0; i < cards.length; i++) {
+		cards[i].status = 'unanswered';
+	}
+}
+
 // Correct response
 function setCorrect() {
 	numCorrect++;
@@ -263,7 +270,10 @@ function clearInput() {
 $(startButton).on('click', startGame);
 
 // Response submission click
-$(responseButton).on('click', submitResponse);
+$(responseButton).on('click', function() {
+	submitResponse();
+	clearInput();
+});
 
 // Response submission [enter]
 $(responseField).keypress(function(e) {
