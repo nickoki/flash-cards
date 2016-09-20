@@ -341,6 +341,7 @@ $(editButton).on('click', function() {
 	hideScoreboard();
 	displayEditContainer();
 	displayEditControls();
+	updateEditTable();
 })
 
 // Response submission click
