@@ -98,7 +98,7 @@ $('.edit-table').on('click', '.delete-button', function() {
 $('.edit-table').on('click', '.save-button', function() {
 	var i = $(this).attr('value');
 	myDecks[currentDeck].cards[i].q = $(this).parent().siblings().eq(1).html();
-	myDecks[currentDeck].cards[i].a = $(this).parent().siblings().eq(2).html();
+	myDecks[currentDeck].cards[i].a = $(this).parent().siblings().eq(2).html().toLowerCase();
 	saveDeckEdits();
 })
 
