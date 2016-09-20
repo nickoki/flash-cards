@@ -230,9 +230,7 @@ function clearOverview() {
 	$(overview).html('');
 }
 
-function clearEditTable() {
-	$('.edit-table').html('');
-}
+
 
 // Update score
 function updateScore(isCorrect) {
@@ -344,7 +342,6 @@ $(editButton).on('click', function() {
 	hideInput();
 	hideScoreboard();
 
-	clearEditTable();
 	displayEditContainer();
 	displayEditControls();
 	updateEditTable();

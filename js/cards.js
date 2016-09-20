@@ -11,8 +11,8 @@ function Deck() {
 // Individual card constructor, added to cards[] in Deck object
 function Card() {
 	return {
-		q: '',
-		a: '',
+		q: '[Prompt]',
+		a: '[Answer]',
 		status: 'unanswered',
 		originalIndex: 0,
 	}
