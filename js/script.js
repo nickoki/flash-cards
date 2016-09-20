@@ -15,10 +15,13 @@ function startGame() {
 	toggleStartButton();
 
 	currentCard = 0;
-
+	hideEditContainer();
+	hideEditControls();
+	displayCardContainer();
 	displayFlashcard();
 	displayArrows();
 	displayInput();
+	displayScoreboard();
 
 
 	clearOverview();
@@ -107,6 +110,24 @@ function displayInput() {
 
 function hideInput() {
 	$('.response-container').addClass('hidden');
+}
+
+function displayEditControls() {
+	$('#editControls').removeClass('hidden');
+}
+
+function hideEditControls() {
+	$('#editControls').addClass('hidden');
+}
+
+function displayScoreboard() {
+	$('#scoreboard').removeClass('hidden');
+	$('#overview').removeClass('hidden');
+}
+
+function hideScoreboard() {
+	$('#scoreboard').addClass('hidden');
+	$('#overview').addClass('hidden');
 }
 
 /*
@@ -271,10 +292,12 @@ function printScore() {
 // DECKLIST FUNCTIONS
 updateDeckList();
 function updateDeckList() {
+	$(deckList).html('');
 	for (var i = 0; i < myDecks.length; i++) {
 		var deckName = '<li class="deck" value="' + i + '">' + myDecks[i].name + ' (' + myDecks[i].cards.length + ' cards)</li>';
 		$(deckList).append(deckName);
 	}
+	$('#deckList li').eq(0).addClass('active');
 }
 
 function activateDeck() {
@@ -301,7 +324,6 @@ function clearInput() {
 $(startButton).on('click',function() {
 	for (var i = 0; i < myDecks.length; i++) {
 		if ($('.deck').eq(i).hasClass('active')) {
-			console.log('dude');
 			currentDeck = $('.deck.active').attr('value');
 		} else {
 			currentDeck = 0;
@@ -316,7 +338,9 @@ $(editButton).on('click', function() {
 	hideArrows();
 	hideFlashcard();
 	hideInput();
+	hideScoreboard();
 	displayEditContainer();
+	displayEditControls();
 })
 
 // Response submission click

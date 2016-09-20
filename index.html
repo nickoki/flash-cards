@@ -33,8 +33,6 @@
 			</div>
 			<div class="edit-container hidden">
 				<h1 class="deck-name"></h1>
-				<div id="renameDeckButton"></div>
-				<div id="newCardButton"></div>
 				<table class="edit-table">
 					<tr class="labels">
 						<th>#</th>
@@ -47,13 +45,17 @@
 		</div>
 
 		<aside>
-			<ul id="scoreboard">
+			<ul id="editControls" class="hidden">
+				<li id="addCardButton" class="nav-button">Rename Deck</li>
+				<li id="renameButton" class="nav-button">Add Card</li>
+			</ul>
+			<ul id="scoreboard" class="hidden">
 				<li><span id="scoreboardTotalCards"></span>Cards in Stack</li>
 				<li><span id="scoreboardRemainingCards"></span>Remaining</li>
 				<li><span id="scoreboardCorrect"></span>Correct</li>
 				<li><span id="scoreboardIncorrect"></span>Incorrect</li>
 			</ul>
-			<ul id="overview"></ul>
+			<ul id="overview" class="hidden"></ul>
 		</aside>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

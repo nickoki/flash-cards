@@ -79,9 +79,8 @@ ul .nav-button:first-of-type {
 .container {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	width: 800px;
+	width: 70%;
 }
 
 .card-container {
@@ -229,7 +228,27 @@ ul .nav-button:first-of-type {
 
 /* == EDIT DECKS == */
 .edit-container {
+	border-radius: 15px;
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	width: 80%;
+}
 
+.edit-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.edit-table th {
+	font-weight: bold;
+}
+
+.edit-table th,
+.edit-table td {
+	border-bottom: 1px solid #ddd;
+	padding: 15px;
+	text-align: left;
 }
 
 
