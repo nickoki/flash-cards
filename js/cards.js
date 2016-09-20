@@ -42,3 +42,9 @@ cards.push(card3);
 cards.push(card4);
 cards.push(card5);
 cards.push(card6);
+
+
+var decks = [];
+var deckName = "Deck 1"
+localStorage.setItem(deckName, cards);
+decks.push(deckName);

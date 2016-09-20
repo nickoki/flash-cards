@@ -13,7 +13,9 @@
 		<nav class="sidebar">
 			<ul>
 				<li id="startButton" class="nav-button">Start</li>
+				<li id="editButton" class="nav-button">Edit</li>
 			</ul>
+			<ul id="deckList"></ul>
 		</nav>
 
 		<div class="container">
@@ -26,13 +28,11 @@
 			</div>
 			<div class="response-container">
 				<span id="responseField" contenteditable="true"></span>
+				<div id="responseButton" class="submit nav-button" value="Submit">Submit</div>
 			</div>
 		</div>
 
 		<aside>
-			<ul>
-				<li id="responseButton" class="submit nav-button" value="Submit">Submit</li>
-			</ul>
 			<ul id="scoreboard">
 				<li><span id="scoreboardTotalCards"></span>Cards in Stack</li>
 				<li><span id="scoreboardRemainingCards"></span>Remaining</li>

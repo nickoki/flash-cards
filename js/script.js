@@ -1,18 +1,23 @@
 /* script.js */
 
+
+
 // GLOBAL VARIABLES
+
+
 var currentCard = 0; // counter for cards list
 var numCorrect = 0;
 
 
-// GAME FUNCTIONS
-// Start
-startGame();
 
+// GAME FUNCTIONS
 // Start game
 function startGame() {
+	// TODO fix "overstart"
 	currentCard = 0;
 	displayBoard();
+	$(previous).css('visibility', 'visible');
+	$(next).css('visibility', 'visible');
 	initScoreboard();
 	printScore();
 	clearInput();
@@ -24,11 +29,17 @@ function startGame() {
 	$('.overview-value').eq(currentCard).html(cards[currentCard].q);
 }
 
+// TODO Reset game function
+
+
 // End game
 function endGame() {
 	$('#flashcard .prompt').html("Congratulations! You're all done!");
 	$('.response-container').css('visibility', 'hidden');
+	$(previous).css('visibility', 'hidden');
+	$(next).css('visibility', 'hidden');
 	$(responseField).blur();
+	$(overview).children().css('pointer-events', 'none');
 }
 
 // Display Board
@@ -179,6 +190,20 @@ function printScore() {
 
 
 
+// DECKLIST FUNCTIONS
+updateDeckList();
+function updateDeckList() {
+	var deckName = '<li class="deck">' + decks[0] + ' (' + decks[0].length + ' cards)</li>';
+	var subNav = '<ul><li>Start</li><li>Edit</li></ul>'
+	$(deckList).append(deckName);
+}
+
+function addSubNav() {
+
+}
+
+
+
 // HELPER FUNCTIONS
 // Clear response input field
 function clearInput() {
@@ -233,7 +258,7 @@ $(next).on('click', function() {
 
 // TODO fix holy grail layout
 
-// TODO next and previous cards function and buttons
+// TODO Solve button
 
 // TODO SUBMISSION
 /*
@@ -241,10 +266,8 @@ Deploy online
 
 */
 
-// TODO
 // TODO Write your own cards
+
 // TODO Card animations
 
 // TODO add 5 user stories
-
-// TODO Card list on side bar
