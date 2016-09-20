@@ -26,6 +26,9 @@ function updateEditTable() {
 }
 
 
+function saveDeckEdits() {
+	localStorage.setItem('Flashcard Decks', JSON.stringify(myDecks));
+}
 
 
 
@@ -34,6 +37,8 @@ function updateEditTable() {
 $('.edit-table').on('click', '.save-button', function() {
 	var i = $(this).attr('value');
 	myDecks[currentDeck].cards[i].q = $(this).parent().siblings().eq(1).html();
+	myDecks[currentDeck].cards[i].a = $(this).parent().siblings().eq(2).html();
+	saveDeckEdits();
 })
 
 $('.edit-table').on('click', '.cancel-button', function() {
