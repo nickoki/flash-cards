@@ -83,4 +83,4 @@ decks.push(deck1);
 decks.push(deck2);
 
 
-//localStorage.setItem('Flashcard Decks', JSON.stringify(decks));
+localStorage.setItem('Flashcard Decks', JSON.stringify(decks));

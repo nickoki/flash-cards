@@ -20,22 +20,24 @@ Having not learned about MVC setups thus far in WDI, I used a workaround to achi
 As mentioned above, I'd like to convert this project to an MVC architecture as we learn more in the course.
 
 I'd also like to implement the following features, if given more time:
-	* Write a card flip animation to show card answers
-	* Allow for multiple correct responses to a card
-	* Add a maximum character limit for cards questions, answers, and deck names
-	* Preserve deck completion state so users can swap between activities without losing progress; add a reset feature
-	* Store decks in a database instead of localStorage
+
+  * Write a card flip animation to show card answers
+  * Allow for multiple correct responses to a card
+  * Add a maximum character limit for cards questions, answers, and deck names
+  * Preserve deck completion state so users can swap between activities without losing progress; add a reset feature
+  * Store decks in a database instead of localStorage
 
 
 ## User Stories
 
 As a user, I should be able to:
-	* study custom material to prepare for test, or to learn in general
-	* create, name, and delete decks of flashcards
-	* add and remove flashcards from those decks
-	* edit flashcard questions and answers
-	* easily test myself with those decks of flashcards and record my progress and scores
-	* cycle back to unanswered or incorrect cards in the stack until answered correctly
+
+  * study custom material to prepare for test, or to learn in general
+  * create, name, and delete decks of flashcards
+  * add and remove flashcards from those decks
+  * edit flashcard questions and answers
+  * easily test myself with those decks of flashcards and record my progress and scores
+  * cycle back to unanswered or incorrect cards in the stack until answered correctly
 
 # Submission
 Submit project as an **issue** to this repo:
