@@ -83,6 +83,6 @@ decks.push(deck1);
 decks.push(deck2);
 
 // If no decks, create example decks
-if (!(localStoreage.getItem('Flashcard Decks'))){
+if (!(localStorage.getItem('Flashcard Decks'))){
 	localStorage.setItem('Flashcard Decks', JSON.stringify(decks));
 }
