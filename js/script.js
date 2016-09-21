@@ -12,7 +12,7 @@ var numCorrect = 0;
 // GAME FUNCTIONS
 // Start game
 function startGame() {
-	toggleStartButton();
+	//toggleStartButton();
 
 	currentCard = 0;
 	hideEditContainer();
@@ -20,6 +20,7 @@ function startGame() {
 	displayCardContainer();
 	displayFlashcard();
 	displayArrows();
+	displayResponseContainer();
 	displayInput();
 	displayScoreboard();
 
@@ -37,6 +38,7 @@ function startGame() {
 }
 
 // Toggle Functions
+/*
 function toggleStartButton() {
 	if ($(startButton).has('.disabled')) {
 		$(startButton).removeClass('disabled');
@@ -44,15 +46,15 @@ function toggleStartButton() {
 		$(startButton).addClass('disabled');
 	}
 }
+*/
 
 // End game
 function endGame() {
 	$('#flashcard .prompt').html("Congratulations! You're all done!");
-	$('.response-container').css('visibility', 'hidden');
-	$(previous).css('visibility', 'hidden');
-	$(next).css('visibility', 'hidden');
+	hideResponseContainer();
+	hideArrows();
 	$(responseField).blur();
-	$(overview).children().css('pointer-events', 'none');
+	//$(overview).children().css('pointer-events', 'none');
 }
 
 
