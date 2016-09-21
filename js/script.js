@@ -377,6 +377,7 @@ $('#overview').on('click', 'li', function() {
 
 // New Deck Button
 $(newDeckButton).on('click', function() {
+	currentDeck = 0;
 	newDeck();
 	updateDeckList();
 	goToEdit();

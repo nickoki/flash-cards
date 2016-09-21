@@ -85,6 +85,7 @@ $('.edit-container .deck-name').keypress(function(e) {
 		$('.deck.active span').html(newName);
 	}
 });
+
 $('.edit-container .deck-name').on('blur', function() {
 	var newName = $('.edit-container .deck-name').html();
 	myDecks[currentDeck].name = newName;
