@@ -1,19 +1,23 @@
 /* style.css */
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
 
-
-
 /* == GLOBAL SETTINGS == */
 
 body {
-	display: flex;
-	justify-content: space-between;
+	min-height: 100vh;
 	background: #485563;
 	background: -webkit-linear-gradient(to left, #485563 , #29323c);
 	background: linear-gradient(to left, #485563 , #29323c);
 	font-family: "Roboto", sans-serif;
 	font-size: 12pt;
 	color: #fff;
+}
+
+.holy-grail {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	min-height: 100vh;
 }
 
 h1 {
@@ -24,29 +28,36 @@ h2 {
 	font-size: 2.2em;
 }
 
+nav {
+	order: -1;
+}
+
 nav h2 {
 	margin: 1em;
 	text-align: center;
 }
 
-nav,
-aside {
+aside,
+nav {
 	display: block;
-	width: 20vw;
+	flex: 0 0 13em;
+	/*width: 20vw;
 	max-width: 280px;
-	height: 100vh;
-	/*background: rgba(255, 255, 255, 0.1);*/
+	min-width: 230px;*/
+	/*height: 100vh;*/
+	background: rgba(255, 255, 255, 0.1);
 }
 
-nav ul,
-aside ul {
+aside ul,
+nav ul {
 	margin: 1em;
 	padding: 0;
+	max-width: 360px;
 	list-style: none;
 }
 
-nav h3,
-aside h3 {
+aside h3,
+nav h3 {
 	text-align: center;
 }
 
@@ -74,11 +85,9 @@ ul .nav-button:not(:last-child) {
 	background: #aab2bd;
 }
 
-
-
 /* == DECKLIST == */
-#overview li,
-#deckList li {
+#deckList li,
+#overview li {
 	display: flex;
 	margin: 0.2em 0;
 	padding: 0.2em 0.8em;
@@ -96,13 +105,13 @@ ul .nav-button:not(:last-child) {
 	justify-content: space-between;
 }
 
-#overview li.active,
-#deckList li.active {
+#deckList li.active,
+#overview li.active {
 	background: #3e464f;
 }
 
-#overview li:hover,
-#deckList li:hover {
+#deckList li:hover,
+#overview li:hover {
 	background: #94989d;
 	cursor: pointer;
 }
@@ -116,9 +125,8 @@ ul .nav-button:not(:last-child) {
 	max-width: 224px;
 }
 
-#overview,
-#deckList {
-	margin: 1em;
+#deckList,
+#overview {
 	border-top: 1px solid #fff;
 	border-bottom: 1px solid #fff;
 	padding: 0.6em 0;
@@ -137,60 +145,60 @@ ul .nav-button:not(:last-child) {
 	font-weight: 700;
 }
 
-
-
 /* == FLASH CARD GAME == */
 
 .container {
 	display: flex;
+	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	width: 70%;
+	/*width: 70%;*/
 }
 
 .card-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-size: 2vw;
 }
 
-#previous,
-#next {
+#next,
+#previous {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 1.5em;
-	width: 60px;
-	height: 300px;
-	font-size: 2em;
+	padding: 0 0.4em;
+	height: 15em;
+	max-height: 300px;
+	font-size: 1.4em;
 }
 
-#previous:hover,
-#next:hover {
+#next:hover,
+#previous:hover {
 	cursor: pointer;
 }
 
-#flashcard {
-
-}
+#flashcard {}
 
 .card {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin: 2em;
+	margin: 1em 0;
 	border: 3px solid #fff;
 	border-radius: 8px;
 	box-shadow: 0 0 16px rgba(0, 0, 0, 0.5), inset 0 0 16px rgba(0, 0, 0, 0.5);
-	width: 500px;
-	height: 300px;
+	width: 20em;
+	max-width: 500px;
+	height: 12em;
+	max-height: 300px;
 	background: hidden;
 	text-align: center;
 }
 
 .prompt {
-	padding: 0 2em;
-	font-size: 2em;
+	padding: 1em;
+	font-size: 1.4em;
 	font-weight: 300;
 }
 
@@ -198,18 +206,18 @@ ul .nav-button:not(:last-child) {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin: 2em;
-	width: 800px;
-	height: 180px;
+	margin: 1em;
+	height: 12em;
+	font-size: 2vw;
 }
 
 #responseField {
-	padding: 10px 10px 10px 5px;
+	padding: 1.2em 10px;
 	border: none;
 	border-radius: 8px;
-	width: 480px;
+	width: 20em;
+	max-width: 500px;
 	background: rgba(255, 255, 255, 0.1);
-	font-size: 3em;
 	color: #fff;
 	text-align: center;
 }
@@ -222,13 +230,13 @@ ul .nav-button:not(:last-child) {
 	display: block;
 	margin-top: 2em;
 	border-radius: 8px;
-	width: 123px;
+	width: 148px;
 }
 
 /* == SCOREBOARD ASIDE == */
 
 #scoreboard {
-	margin: 1em;
+
 	padding: 0.6em 0;
 	list-style: none;
 }
@@ -255,8 +263,6 @@ ul .nav-button:not(:last-child) {
 	color: #ed5565;
 }
 
-
-
 /* == EDIT DECKS == */
 .edit-container {
 	display: inline-block;
@@ -282,8 +288,8 @@ ul .nav-button:not(:last-child) {
 	font-weight: bold;
 }
 
-.edit-table th,
-.edit-table td {
+.edit-table td,
+.edit-table th {
 	border-bottom: 1px solid #ddd;
 	padding: 15px;
 	text-align: left;
@@ -360,18 +366,42 @@ ul .nav-button:not(:last-child) {
 	background: #F6BB42;
 }
 
-
 /* == HELPERS == */
 .hidden {
 	display: none !important;
 }
 
-/*
-// Tablets
-@media screen and (max-width: 768px) {
+/* == RESPONSIVITY == */
+@media (min-width: 1180px) {
+	}
 
+/* Tablets */
+@media (max-width: 782px) {
+	.holy-grail {
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.container {
+		flex: 1;
+	}
+
+	.card-container,
+	.card-container {
+		font-size: 17px;
+	}
+
+	nav,
+	aside {
+		/* 12em is the width of the columns */
+		flex: 0 0 12em;
+	}
+	nav ul,
+	aside ul {
+		margin: 1em auto;
+	}
 }
-
+/*
 // Smartphones
 @media screen and (max-width: 320px) {
 

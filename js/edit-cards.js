@@ -49,7 +49,7 @@ function newDeck() {
 	var firstCard = new Card();
 	newDeck.cards.push(firstCard);
 
-	myDecks.push(newDeck);
+	myDecks.unshift(newDeck);
 	saveDeckEdits();
 }
 

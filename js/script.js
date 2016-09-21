@@ -310,7 +310,6 @@ function activateDeck() {
 	}
 	$(this).addClass('active');
 	currentDeck = $('.deck.active').attr('value');
-	// TODO add fa
 }
 
 
@@ -328,16 +327,8 @@ function updateDeckName() {
 	$('.deck-name').html(myDecks[currentDeck].name);
 }
 
-
-
-// EVENT LISTENERS
-// Start button click
-$(startButton).on('click',function() {
-	startGame();
-})
-
-// Edit button click
-$(editButton).on('click', function() {
+// Go To Edit screen
+function goToEdit() {
 	hideCardContainer();
 	hideArrows();
 	hideFlashcard();
@@ -348,7 +339,17 @@ $(editButton).on('click', function() {
 	displayEditControls();
 	updateEditTable();
 	updateDeckName();
+}
+
+
+// EVENT LISTENERS
+// Start button click
+$(startButton).on('click',function() {
+	startGame();
 })
+
+// Edit button click
+$(editButton).on('click', goToEdit);
 
 // Response submission click
 $(responseButton).on('click', function() {
@@ -379,7 +380,8 @@ $('#overview').on('click', 'li', function() {
 // New Deck Button
 $(newDeckButton).on('click', function() {
 	newDeck();
-	location.reload();
+	updateDeckList();
+	goToEdit();
 })
 
 // Previous Card
@@ -406,14 +408,6 @@ $(next).on('click', function() {
 // TODO Test for different viewports
 
 // TODO SUBMISSION
-/*
-Deploy online
-
-*/
-
-// TODO Write your own cards
-
-// TODO Card animations
 
 // TODO add 5 user stories
 
