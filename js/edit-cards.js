@@ -30,7 +30,7 @@ function addCardToTable(i) {
 	entry += '<td id=editA" contenteditable="true">' + myDecks[currentDeck].cards[i].a + '</td>';
 
 	// Add Options
-	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete Card</div></td>';
+	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete Card</div></td></tr>';
 
 	$('.edit-table').append(entry);
 }

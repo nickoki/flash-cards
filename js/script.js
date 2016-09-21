@@ -365,7 +365,7 @@ $(responseField).keypress(function(e) {
 });
 
 // Deck List click, activate
-$('.deck').on('click', activateDeck)
+$(deckList).on('click', '.deck', activateDeck)
 
 // Overview click
 $('#overview').on('click', 'li', function() {
