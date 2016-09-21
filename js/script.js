@@ -23,7 +23,6 @@ function startGame() {
 	displayInput();
 	displayScoreboard();
 
-
 	clearOverview();
 	initScoreboard();
 	resetScore();
@@ -46,11 +45,6 @@ function toggleStartButton() {
 	}
 }
 
-
-
-// TODO Reset game function
-
-
 // End game
 function endGame() {
 	$('#flashcard .prompt').html("Congratulations! You're all done!");
@@ -60,6 +54,8 @@ function endGame() {
 	$(responseField).blur();
 	$(overview).children().css('pointer-events', 'none');
 }
+
+
 
 // DISPLAY FUNCTIONS
 function displayCardContainer() {
@@ -138,7 +134,7 @@ function displayBoard() {
 
 // Submit Response, check for correctness
 function submitResponse() {
-	var res = $(responseField).html().toLowerCase(); // TODO Create cards function, format input
+	var res = $(responseField).html().toLowerCase();
 	// check is response was right or wrong
 	if (res == myDecks[currentDeck].cards[currentCard].a) {
 		updateScore(true);
@@ -401,15 +397,7 @@ $(next).on('click', function() {
 
 // TODO Write card flip animation function
 
-// TODO fix holy grail layout
-
 // TODO Solve button
-
-// TODO Test for different viewports
-
-// TODO SUBMISSION
-
-// TODO add 5 user stories
 
 // TODO multiple correct answers
 
