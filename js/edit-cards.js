@@ -8,7 +8,7 @@ function updateEditTable() {
 
 	clearEditTable();
 
-	var labels = '<tr class="labels"><th>#</th><th>Question</th><th>Answer</th><th class="options-column">Options</th></tr>';
+	var labels = '<tr class="labels"><th>#</th><th>Question</th><th>Answer</th><th class="options-column"></th></tr>';
 	$('.edit-table').append(labels);
 
 	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
@@ -30,7 +30,7 @@ function addCardToTable(i) {
 	entry += '<td id=editA" contenteditable="true">' + myDecks[currentDeck].cards[i].a + '</td>';
 
 	// Add Options
-	entry += '<td><div class="cancel-button table-button">Cancel</div><div class="save-button table-button" value="' + i + '">Save</div><div class="delete-button table-button" value="' + i + '">Delete</div></td>';
+	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete</div></td>';
 
 	$('.edit-table').append(entry);
 }
@@ -95,15 +95,16 @@ $('.edit-table').on('click', '.delete-button', function() {
 })
 
 // Save Button listener
-$('.edit-table').on('click', '.save-button', function() {
-	var i = $(this).attr('value');
-	myDecks[currentDeck].cards[i].q = $(this).parent().siblings().eq(1).html();
-	myDecks[currentDeck].cards[i].a = $(this).parent().siblings().eq(2).html().toLowerCase();
+$(saveButton).on('click', function() {
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
+		myDecks[currentDeck].cards[i].q = $('.edit-table').children().eq(i+1).children().eq(1).html();
+		myDecks[currentDeck].cards[i].a = $('.edit-table').children().eq(i+1).children().eq(2).html().toLowerCase();
+	}
 	saveDeckEdits();
 })
 
 // Cancel Button listener
-$('.edit-table').on('click', '.cancel-button', function() {
+$(cancelButton).on('click', function() {
 	clearEditTable();
 	updateEditTable();
 })

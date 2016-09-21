@@ -41,11 +41,7 @@ aside,
 nav {
 	display: block;
 	flex: 0 0 13em;
-	/*width: 20vw;
-	max-width: 280px;
-	min-width: 230px;*/
-	/*height: 100vh;*/
-	background: rgba(255, 255, 255, 0.1);
+	/*background: rgba(255, 255, 255, 0.1);*/
 }
 
 aside ul,
