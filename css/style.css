@@ -67,7 +67,7 @@ nav h3 {
 	letter-spacing: 0.3em;
 }
 
-ul .nav-button:not(:last-child) {
+.nav-button:not(:last-child) {
 	margin-bottom: 1em;
 }
 
@@ -204,7 +204,7 @@ ul .nav-button:not(:last-child) {
 	align-items: center;
 	margin: 1em;
 	height: 12em;
-	font-size: 2vw;
+	font-size: 1.4vw;
 }
 
 #responseField {
@@ -292,7 +292,7 @@ ul .nav-button:not(:last-child) {
 }
 
 .options-column {
-	min-width: 258px;
+	min-width: 122px;
 }
 
 .table-button {
@@ -338,12 +338,28 @@ ul .nav-button:not(:last-child) {
 	background: #aab2bd;
 }
 
-#deleteDeckButton {
-	background: #656d78;
+#saveButton {
+	background: #A0D468;
 }
 
-#deleteDeckButton:hover {
-	background: #434a54;
+#saveButton:hover {
+	background: #8CC152;
+}
+
+#addCardButton {
+	background: #FFCE54;
+}
+
+#addCardButton:hover {
+	background: #F6BB42;
+}
+
+#cancelButton {
+	background: #CCD1D9;
+}
+
+#cancelButton:hover {
+	background: #AAB2BD;
 }
 
 #renameDeckButton {
@@ -354,13 +370,15 @@ ul .nav-button:not(:last-child) {
 	background: #434a54;
 }
 
-#addCardButton {
-	background: #FFCE54;
+#deleteDeckButton {
+	background: #656d78;
 }
 
-#addCardButton:hover {
-	background: #F6BB42;
+#deleteDeckButton:hover {
+	background: #434a54;
 }
+
+
 
 /* == HELPERS == */
 .hidden {
@@ -380,11 +398,21 @@ ul .nav-button:not(:last-child) {
 
 	.container {
 		flex: 1;
+		order: 3;
 	}
 
 	.card-container,
-	.card-container {
+	.response-container {
 		font-size: 17px;
+	}
+
+	nav {
+		order: 1;
+	}
+
+	aside {
+		order: 2;
+		border-top: 2px solid #fff;
 	}
 
 	nav,

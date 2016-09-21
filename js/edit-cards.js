@@ -30,7 +30,7 @@ function addCardToTable(i) {
 	entry += '<td id=editA" contenteditable="true">' + myDecks[currentDeck].cards[i].a + '</td>';
 
 	// Add Options
-	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete</div></td>';
+	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete Card</div></td>';
 
 	$('.edit-table').append(entry);
 }
@@ -74,8 +74,18 @@ $(deleteDeckButton).on('click', function() {
 	}
 })
 
-// Rename Deck button listener
-$(renameDeckButton).on('click', function() {
+// Rename Deck [enter] listener
+$('.edit-container .deck-name').keypress(function(e) {
+	if (e.which == 13) {
+		e.preventDefault();
+		var newName = $('.edit-container .deck-name').html();
+		myDecks[currentDeck].name = newName;
+		saveDeckEdits();
+		updateDeckName();
+		$('.deck.active span').html(newName);
+	}
+});
+$('.edit-container .deck-name').on('blur', function() {
 	var newName = $('.edit-container .deck-name').html();
 	myDecks[currentDeck].name = newName;
 	saveDeckEdits();
@@ -89,9 +99,16 @@ $(addCardButton).on('click', newCard);
 
 // Save Button listener
 $('.edit-table').on('click', '.delete-button', function() {
-	var i = $(this).attr('value');
+	var i = parseInt($(this).attr('value'));
+	$('.edit-table').children().eq(i+1).remove();
 	myDecks[currentDeck].cards.splice(i, 1);
 	saveDeckEdits();
+
+	// Relabel rows
+	for (var j = i; j < myDecks[currentDeck].cards.length + 1; j++) {
+		$('.edit-table').children().eq(j).children().eq(0).html(j);
+		$('.edit-table').children().eq(j).children().eq(3).children().attr('value', (j-1));
+	}
 })
 
 // Save Button listener
