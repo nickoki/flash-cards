@@ -17,6 +17,9 @@ function updateEditTable() {
 }
 
 function addCardToTable(i) {
+	// NHO: template strings ftw!
+	// Sidenote: if you feel like you are writing a lot of stringified templates, I might recommend checking out a templating library like Handlebars
+
 	// Begin html table row
 	var entry = '<tr>';
 
@@ -27,7 +30,7 @@ function addCardToTable(i) {
 	entry += '<td id="editQ" contenteditable="true">' + myDecks[currentDeck].cards[i].q + '</td>';
 
 	// Add answer
-	entry += '<td id=editA" contenteditable="true">' + myDecks[currentDeck].cards[i].a + '</td>';
+	entry += '<td id="editA" contenteditable="true">' + myDecks[currentDeck].cards[i].a + '</td>';
 
 	// Add Options
 	entry += '<td><div class="delete-button table-button" value="' + i + '">Delete Card</div></td></tr>';
@@ -85,6 +88,8 @@ $('.edit-container .deck-name').keypress(function(e) {
 		$('.deck.active span').html(newName);
 	}
 });
+
+
 $('.edit-container .deck-name').on('blur', function() {
 	var newName = $('.edit-container .deck-name').html();
 	myDecks[currentDeck].name = newName;
@@ -97,7 +102,7 @@ $('.edit-container .deck-name').on('blur', function() {
 // New Card button listener
 $(addCardButton).on('click', newCard);
 
-// Save Button listener
+// Delete Button listener
 $('.edit-table').on('click', '.delete-button', function() {
 	var i = parseInt($(this).attr('value'));
 	$('.edit-table').children().eq(i+1).remove();
@@ -113,6 +118,22 @@ $('.edit-table').on('click', '.delete-button', function() {
 
 // Save Button listener
 $(saveButton).on('click', function() {
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
+		myDecks[currentDeck].cards[i].q = $('.edit-table').children().eq(i+1).children().eq(1).html();
+		myDecks[currentDeck].cards[i].a = $('.edit-table').children().eq(i+1).children().eq(2).html().toLowerCase();
+	}
+	saveDeckEdits();
+})
+
+$('.edit-table').on('blur', '#editA', function() {
+	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
+		myDecks[currentDeck].cards[i].q = $('.edit-table').children().eq(i+1).children().eq(1).html();
+		myDecks[currentDeck].cards[i].a = $('.edit-table').children().eq(i+1).children().eq(2).html().toLowerCase();
+	}
+	saveDeckEdits();
+})
+
+$('.edit-table').on('blur', '#editQ', function() {
 	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
 		myDecks[currentDeck].cards[i].q = $('.edit-table').children().eq(i+1).children().eq(1).html();
 		myDecks[currentDeck].cards[i].a = $('.edit-table').children().eq(i+1).children().eq(2).html().toLowerCase();

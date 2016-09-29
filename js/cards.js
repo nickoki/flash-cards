@@ -1,5 +1,7 @@
 /* cards.js */
 
+// NHO: how could you update this to use ES6 classes?
+
 // Deck of cards constructor
 function Deck() {
 	return {
@@ -19,11 +21,12 @@ function Card() {
 }
 
 var card1a = new Card();
-card1a.q = 'What is the git command to add all files with changes to your repo?';
+// NHO: could pass in q and a as arguments to where you are creating a new card...
+card1a.q = 'What is the git command to stage all files with changes to your repo?';
 card1a.a = 'git add .';
 
 var card2a = new Card();
-card2a.q = 'What problem does git solve?';
+card2a.q = 'What programming workflow problem does git help solve?';
 card2a.a = 'version control';
 
 var card3a = new Card();
@@ -47,26 +50,26 @@ deck1.cards.push(card4a);
 
 
 var card1b = new Card();
-card1b.q = 'What does CSS stand for?';
+card1b.q = 'css';
 card1b.a = 'cascading style sheets';
 
 var card2b = new Card();
-card2b.q = 'What is the CSS property to change font color?';
-card2b.a = 'color';
+card2b.q = 'html';
+card2b.a = 'hypertext markup language';
 
 var card3b = new Card();
-card3b.q = 'What is the full CSS property and value to implement flexbox?';
-card3b.a = 'display: flex;';
+card3b.q = 'MVP';
+card3b.a = 'minimum viable product';
 
 var card4b = new Card();
-card4b.q = 'What character is used in CSS to identify an html id attribute?';
-card4b.a = '#';
+card4b.q = 'http';
+card4b.a = 'hypertext transfer protocol';
 
 var card5b = new Card();
-card5b.q = 'What character is used in CSS to identify an html class attribute?';
-card5b.a = '.';
+card5b.q = 'wdi ;)';
+card5b.a = 'web development immersive';
 
-var deckName2 = "CSS";
+var deckName2 = "Acronyms";
 
 var deck2 = new Deck();
 
@@ -83,4 +86,8 @@ decks.push(deck1);
 decks.push(deck2);
 
 
-//localStorage.setItem('Flashcard Decks', JSON.stringify(decks));
+// NHO: local storage!
+// If no decks, create example decks
+if (!(localStorage.getItem('Flashcard Decks'))){
+	localStorage.setItem('Flashcard Decks', JSON.stringify(decks));
+}

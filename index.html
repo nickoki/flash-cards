@@ -1,67 +1,70 @@
+<!-- NHO: Good, semantic, Markup!  -->
 <!DOCTYPE html>
 <html>
+<head>
+	<meta charset="utf-8">
+	<title>Flash Cards</title>
+	<link href="css/font-awesome.min.css" rel="stylesheet">
+	<link href="css/normalize.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
 
-	<head>
-		<meta charset="utf-8">
-		<title>Flash Cards</title>
-		<link href="css/font-awesome.min.css" rel="stylesheet">
-		<link href="css/normalize.css" rel="stylesheet" type="text/css">
-		<link href="css/style.css" rel="stylesheet" type="text/css">
-	</head>
+<body>
+	<div class="holy-grail">
+		<nav class="sidebar">
+			<!-- NHO: friendly reminder to remove unused / commented out code  -->
+			<!-- <h2 class="deck-name"></h2> -->
+			<ul>
+				<li id="startButton" class="nav-button">Start</li>
+				<li id="editButton" class="nav-button">Edit</li>
+			</ul>
+			<ul id="deckList"></ul>
+			<ul>
+				<li id="newDeckButton" class="nav-button">New Deck</li>
+			</ul>
+		</nav>
 
-	<body>
-		<div class="holy-grail">
-			<nav class="sidebar">
-				<!-- <h2 class="deck-name"></h2> -->
-				<ul>
-					<li id="startButton" class="nav-button">Start</li>
-					<li id="editButton" class="nav-button">Edit</li>
-				</ul>
-				<ul id="deckList"></ul>
-				<ul>
-					<li id="newDeckButton" class="nav-button">New Deck</li>
-				</ul>
-			</nav>
-
-			<div class="container">
-				<div class="card-container">
-					<div id="previous" class="hidden"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-					<div id="flashcard" class="card hidden">
-						<h2 class="prompt">Example prompt goes in this space.</Example></h2>
-					</div>
-					<div id="next" class="hidden"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+		<div class="container">
+			<div class="card-container">
+				<div id="previous" class="hidden"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+				<div id="flashcard" class="card hidden">
+					<!-- NHO: is this `</Example>` tag being used?  -->
+					<h2 class="prompt">Example prompt goes in this space.</Example></h2>
 				</div>
-				<div class="response-container hidden">
-					<span id="responseField" contenteditable="true"></span>
-					<div id="responseButton" class="submit nav-button" value="Submit">Submit</div>
-				</div>
-				<div class="edit-container hidden">
-					<h1 class="deck-name" contenteditable="true" maxlength="20"></h1>
-					<table class="edit-table"></table>
-				</div>
+				<div id="next" class="hidden"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
 			</div>
-
-			<aside>
-				<ul id="editControls" class="hidden">
-					<li id="saveButton" class="nav-button">Save All Changes</li>
-					<li id="addCardButton" class="nav-button">Add New Card</li>
-					<li id="cancelButton" class="nav-button">Cancel</li>
-					<li id="deleteDeckButton" class="nav-button">Delete Deck</li>
-				</ul>
-				<ul id="scoreboard" class="hidden">
-					<li><span id="scoreboardTotalCards"></span>Cards in Stack</li>
-					<li><span id="scoreboardRemainingCards"></span>Remaining</li>
-					<li><span id="scoreboardCorrect"></span>Correct</li>
-					<li><span id="scoreboardIncorrect"></span>Incorrect</li>
-				</ul>
-				<ul id="overview" class="hidden"></ul>
-			</aside>
+			<div class="response-container hidden">
+				<span id="responseField" contenteditable="true"></span>
+				<!-- NHO: removing unnecessary value attr to make html validate  -->
+				<div id="responseButton" class="submit nav-button">Submit</div>
+			</div>
+			<div class="edit-container hidden">
+				<!-- NHO: don't believe `maxlength` is a valid attr here, might want to make a titlize or truncate method in js -->
+				<h1 class="deck-name" contenteditable="true" maxlength="20"></h1>
+				<table class="edit-table"></table>
+			</div>
 		</div>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-		<script src="js/cards.js"></script>
-		<script src="js/edit-cards.js"></script>
-		<script src="js/script.js"></script>
-	</body>
+		<aside>
+			<ul id="editControls" class="hidden">
+				<li id="saveButton" class="nav-button">Save All Changes</li>
+				<li id="addCardButton" class="nav-button">Add New Card</li>
+				<li id="cancelButton" class="nav-button">Cancel</li>
+				<li id="deleteDeckButton" class="nav-button">Delete Deck</li>
+			</ul>
+			<ul id="scoreboard" class="hidden">
+				<li><span id="scoreboardTotalCards"></span>Cards in Stack</li>
+				<li><span id="scoreboardRemainingCards"></span>Remaining</li>
+				<li><span id="scoreboardCorrect"></span>Correct</li>
+				<li><span id="scoreboardIncorrect"></span>Incorrect</li>
+			</ul>
+			<ul id="overview" class="hidden"></ul>
+		</aside>
+	</div>
 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="js/cards.js"></script>
+	<script src="js/edit-cards.js"></script>
+	<script src="js/script.js"></script>
+</body>
 </html>

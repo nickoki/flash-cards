@@ -1,3 +1,4 @@
+/* NHO: Wow, awesome job on creating a rich and creative UI! Love the design and layout  */
 /* style.css */
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,700';
 
@@ -6,6 +7,7 @@
 body {
 	min-height: 100vh;
 	background: #485563;
+	/* NHO: vendor extension might not be necessary http://caniuse.com/#search=gradient  */
 	background: -webkit-linear-gradient(to left, #485563 , #29323c);
 	background: linear-gradient(to left, #485563 , #29323c);
 	font-family: "Roboto", sans-serif;
@@ -77,6 +79,7 @@ nav h3 {
 }
 
 .disabled {
+	/* NHO: From the validator: Property pointer-events doesn't exist : none */
 	pointer-events: none;
 	background: #aab2bd;
 }
@@ -188,7 +191,7 @@ nav h3 {
 	max-width: 500px;
 	height: 12em;
 	max-height: 300px;
-	background: hidden;
+	background: hidden; 	/* NHO: is this a valid value? 	*/
 	text-align: center;
 }
 
@@ -425,6 +428,8 @@ nav h3 {
 		margin: 1em auto;
 	}
 }
+
+/* NHO: love to see you come back and implement this! */
 /*
 // Smartphones
 @media screen and (max-width: 320px) {

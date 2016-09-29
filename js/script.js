@@ -1,6 +1,13 @@
 /* script.js */
 
 
+// NHO: Love that you took an OO approach for Cards and Decks, you could do the same thing here for Game potentiallly!
+// This could help with keeping track of progress through a session etc...
+
+ // NHO: These Vars could be properties on you Game object
+
+// NHO: Another thing that might be helpful is to save references to all the elements you plan on using
+// so you don't have to repeat selectors, i.e. var responseContainer = $('.response-container')
 
 // GLOBAL VARIABLES
 var myDecks = JSON.parse(localStorage.getItem('Flashcard Decks'));
@@ -8,18 +15,21 @@ var currentDeck = 0;
 var currentCard = 0; // counter for cards list
 var numCorrect = 0;
 
+// NHO: and these functions could be methods on that Game object
 
 // GAME FUNCTIONS
 // Start game
 function startGame() {
-	toggleStartButton();
+	//
+	//toggleStartButton();
 
-	currentCard = 0;
+	currentCard = 0; // NHO: don't believe this line is necessary since you are already initializing it 0 above
 	hideEditContainer();
 	hideEditControls();
 	displayCardContainer();
 	displayFlashcard();
 	displayArrows();
+	displayResponseContainer();
 	displayInput();
 	displayScoreboard();
 
@@ -30,13 +40,16 @@ function startGame() {
 	clearInput();
 	$(responseField).focus();
 	// Update flashcard
+	// NHO: this line will throw a type error if `q` is undefined btw...
 	$('#flashcard .prompt').html(myDecks[currentDeck].cards[currentCard].q);
 	// Update scorboard overview
 	$('#overview li').eq(currentCard).addClass('active');
 	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 }
 
+// NHO: Reminder to remove unused / commented out code or move to a Work In Progress branch
 // Toggle Functions
+/*
 function toggleStartButton() {
 	if ($(startButton).has('.disabled')) {
 		$(startButton).removeClass('disabled');
@@ -44,18 +57,21 @@ function toggleStartButton() {
 		$(startButton).addClass('disabled');
 	}
 }
+*/
 
 // End game
 function endGame() {
 	$('#flashcard .prompt').html("Congratulations! You're all done!");
-	$('.response-container').css('visibility', 'hidden');
-	$(previous).css('visibility', 'hidden');
-	$(next).css('visibility', 'hidden');
+	hideResponseContainer();
+	hideArrows();
 	$(responseField).blur();
-	$(overview).children().css('pointer-events', 'none');
+	//$(overview).children().css('pointer-events', 'none');
 }
 
 
+// NHO: I think its great that you've organized your code like this, very clear to read
+// one idea that might reduce all of these display functions is to have one toggleDisplay function that
+// take an element as a parameter, then toggle's that elements 'hidden' class
 
 // DISPLAY FUNCTIONS
 function displayCardContainer() {
@@ -204,12 +220,16 @@ function previousCard() {
 
 // Show card
 function showCard(i) {
-	currentCard = i;
+	currentCard = i; // NHO: is this necessary to update the global var?
 	$('#flashcard .prompt').html(myDecks[currentDeck].cards[i].q);
 	$('.overview-value').eq(currentCard).html(myDecks[currentDeck].cards[currentCard].q);
 }
 
 
+// NHO: I feel like this scoreboard is a great opportunity to make use of the view model pattern in development
+// This is where we can create classes or (models) of View templates as well. Ultimately the view model
+// will have a render method that decides what html to put on the page, then you just have bunch of ways of updating the display.
+// We'll go over this more in class later, but if you want to take a peak ahead check out https://github.com/ga-wdi-lessons/js-view-constructors (ES5 syntax)
 
 // SCOREBOARD FUNCTIONS
 // Initialize scoreboard
@@ -245,7 +265,7 @@ function updateScore(isCorrect) {
 function resetScore() {
 	numCorrect = 0;
 	for (var i = 0; i < myDecks[currentDeck].cards.length; i++) {
-		myDecks[currentDeck].cards[i].status = 'unanswered';
+		myDecks[currentDeck].cards[i].status = 'unanswered'; // NHO: might recommend using a boolean as the data type for status || rename it to completed
 	}
 }
 
@@ -363,7 +383,7 @@ $(responseField).keypress(function(e) {
 });
 
 // Deck List click, activate
-$('.deck').on('click', activateDeck)
+$(deckList).on('click', '.deck', activateDeck)
 
 // Overview click
 $('#overview').on('click', 'li', function() {
@@ -375,6 +395,7 @@ $('#overview').on('click', 'li', function() {
 
 // New Deck Button
 $(newDeckButton).on('click', function() {
+	currentDeck = 0;
 	newDeck();
 	updateDeckList();
 	goToEdit();
