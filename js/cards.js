@@ -1,5 +1,7 @@
 /* cards.js */
 
+// NHO: how could you update this to use ES6 classes?
+
 // Deck of cards constructor
 function Deck() {
 	return {
@@ -19,6 +21,7 @@ function Card() {
 }
 
 var card1a = new Card();
+// NHO: could pass in q and a as arguments to where you are creating a new card...
 card1a.q = 'What is the git command to stage all files with changes to your repo?';
 card1a.a = 'git add .';
 
@@ -82,6 +85,8 @@ var decks = [];
 decks.push(deck1);
 decks.push(deck2);
 
+
+// NHO: local storage!
 // If no decks, create example decks
 if (!(localStorage.getItem('Flashcard Decks'))){
 	localStorage.setItem('Flashcard Decks', JSON.stringify(decks));

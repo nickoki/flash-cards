@@ -17,6 +17,9 @@ function updateEditTable() {
 }
 
 function addCardToTable(i) {
+	// NHO: template strings ftw!
+	// Sidenote: if you feel like you are writing a lot of stringified templates, I might recommend checking out a templating library like Handlebars
+
 	// Begin html table row
 	var entry = '<tr>';
 
